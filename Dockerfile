@@ -4,6 +4,8 @@ MAINTAINER Juan Jose Scarafia <jjs@adhoc.com.ar>
 ## Change this date when you want to make a new build
 ENV REFRESHED_AT 2015-03-15
 
+USER root
+
 # Install some deps
 RUN apt-get update \
         && apt-get install -y \
@@ -52,3 +54,5 @@ RUN pip install python-magic
 RUN pip install erppeek
 
 RUN chown odoo /var/lib/odoo
+
+USER odoo
