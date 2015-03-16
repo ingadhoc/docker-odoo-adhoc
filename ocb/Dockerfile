@@ -6,7 +6,7 @@ ENV REFRESHED_AT 2015-03-15
 
 USER root
 
-RUN git clone https://github.com/oca/ocb /mnt -b 8.0
+RUN git clone https://github.com/oca/ocb /mnt/ocb -b 8.0
 
 # Copy Odoo configuration file
 COPY ./run.sh /
