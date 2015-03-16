@@ -9,7 +9,6 @@ USER root
 RUN git clone https://github.com/oca/ocb /mnt/ocb -b 8.0
 
 # Copy Odoo configuration file
-COPY ./run.sh /
 COPY ./openerp-server.conf /etc/odoo/
 RUN chown odoo /etc/odoo/openerp-server.conf
 
