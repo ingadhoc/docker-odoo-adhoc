@@ -9,6 +9,10 @@ RUN apt-get update \
         && apt-get install -y \
         python-pip git
 
+# Workers and longpolling dependencies
+RUN apt-get install -y python-gevent
+RUN pip install psycogreen
+
 ## Install pip dependencies for adhoc used odoo repositories
 
 # used by many pip packages
@@ -46,3 +50,5 @@ RUN pip install python-magic
 
 # odoo support
 RUN pip install erppeek
+
+RUN chown odoo /var/lib/odoo
