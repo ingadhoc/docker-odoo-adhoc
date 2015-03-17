@@ -63,6 +63,14 @@ or with a disposable container:
     ## Con custom config, custom addons path y custom data dir
     docker run --rm -ti -p 127.0.0.1:8069:8069 -p 127.0.0.1:8072:8072 --name odoo-logos-80-main --link db-logos-80-main:db -t -v /opt/odoo/logos-80/main/config:/etc/odoo -v /opt/odoo/logos-80/main/sources:/mnt/extra-addons -v /opt/odoo/logos-80/main/data_dir:/var/lib/odoo adhoc/odoo-adhoc
 
+Parametros archivo openerp-server.conf
+--------------------------------------
+Tipicamente cambiamos:
+  addons_path = /usr/lib/python2.7/dist-packages/openerp/addons,/mnt/extra-addons/odoo-addons
+  workers = 9
+  admin_passwd = 
+
+
 Start and Stop an Odoo Instance
 -------------------------------
 docker stop odoo

@@ -53,6 +53,6 @@ RUN pip install python-magic
 # odoo support
 RUN pip install erppeek
 
-RUN chown odoo /var/lib/odoo
+RUN chown odoo -R /var/lib/odoo
 
 USER odoo
