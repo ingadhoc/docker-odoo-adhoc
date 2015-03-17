@@ -53,6 +53,8 @@ RUN pip install python-magic
 # odoo support
 RUN pip install erppeek
 
-RUN chown odoo -R /var/lib/odoo
+# Permisos a odoo y al resto de los usuarios para ver archivos
+RUN chmod 666 -R /etc/odoo
+RUN chmod 666 -R /var/lib/odoo
 
 USER odoo
