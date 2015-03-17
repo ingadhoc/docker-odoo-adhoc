@@ -55,6 +55,8 @@ RUN pip install erppeek
 
 # Permisos a odoo y al resto de los usuarios para ver archivos
 RUN chmod 666 -R /etc/odoo
+RUN chown odoo -R /etc/odoo
 RUN chmod 666 -R /var/lib/odoo
+RUN chown odoo -R /var/lib/odoo
 
 USER odoo
