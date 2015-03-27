@@ -28,7 +28,7 @@ RUN pip install M2Crypto suds
 RUN pip install geopy==0.95.1 BeautifulSoup
 
 # odoo etl, infra and others
-RUN pip install openerp-client-lib fabric erppeek
+RUN pip install openerp-client-lib fabric erppeek fabtools
 
 # oca reports
 RUN pip install xlwt
