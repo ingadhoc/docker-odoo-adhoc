@@ -25,7 +25,7 @@ ENV ODOO_VERSION 7.0
 # ENV ODOO_RELEASE latest
 ENV ODOO_RELEASE 20150428
 RUN set -x; \
-        curl -o odoo.deb -SL http://nightly.odoo.com/${ODOO_VERSION}/nightly/deb/odoo_${ODOO_VERSION}.${ODOO_RELEASE}_all.deb \
+        curl -o odoo.deb -SL http://nightly.odoo.com/${ODOO_VERSION}/nightly/deb/openerp_${ODOO_VERSION}.${ODOO_RELEASE}_all.deb \
         && dpkg --force-depends -i odoo.deb \
         && apt-get update \
         && apt-get -y install -f --no-install-recommends \
@@ -34,7 +34,7 @@ RUN set -x; \
 # Copy entrypoint script and Odoo configuration file
 COPY ./entrypoint.sh /
 COPY ./openerp-server.conf /etc/odoo/
-RUN chown odoo /etc/odoo/openerp-server.conf
+RUN chown openerp /etc/odoo/openerp-server.conf
 
 # Mount /var/lib/odoo to allow restoring filestore and /mnt/extra-addons for users addons
 VOLUME ["/var/lib/odoo", "/mnt/extra-addons"]
@@ -47,8 +47,7 @@ ENV OPENERP_SERVER /etc/odoo/openerp-server.conf
 
 ### ADHOC customizations
 # Install some deps
-RUN apt-get update \
-        && apt-get install -y \
+RUN apt-get install -y \
         python-pip git
 
 # Workers and longpolling dependencies
@@ -95,7 +94,7 @@ RUN pip install erppeek
 ### END ADHOC customizations
 
 # Set default user when running the container
-USER odoo
+USER openerp
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["openerp-server"]
