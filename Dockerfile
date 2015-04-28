@@ -61,7 +61,7 @@ RUN pip install psycogreen
 RUN apt-get install -y python-dev
 
 # odoo adhoc
-RUN apt-get install -y swig
+RUN apt-get install -y swig libssl-dev
 RUN pip install M2Crypto suds
 
 # odoo argentina
@@ -99,8 +99,3 @@ USER openerp
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["openerp-server"]
-
-MAINTAINER Juan Jose Scarafia <jjs@adhoc.com.ar>
-
-## Change this date when you want to make a new build
-ENV REFRESHED_AT 2015-03-15
