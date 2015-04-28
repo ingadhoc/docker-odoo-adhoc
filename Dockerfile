@@ -47,7 +47,8 @@ ENV OPENERP_SERVER /etc/odoo/openerp-server.conf
 
 ### ADHOC customizations
 # Install some deps
-RUN apt-get install -y \
+RUN apt-get update \
+        && apt-get install -y \
         python-pip git
 
 # Workers and longpolling dependencies
