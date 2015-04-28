@@ -10,15 +10,15 @@ set -e
 export PGHOST PGPORT PGUSER PGPASSWORD
 
 case "$1" in
-    --)
-        shift
-        exec openerp-server "$@"
-        ;;
-    -*)
-        exec openerp-server "$@"
-        ;;
-    *)
-        exec "$@"
+	--)
+		shift
+		exec openerp-server "$@"
+		;;
+	-*)
+		exec openerp-server "$@"
+		;;
+	*)
+		exec "$@"
 esac
 
 exit 1
