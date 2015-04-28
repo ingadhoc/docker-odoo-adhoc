@@ -21,7 +21,7 @@ RUN pip install psycogreen
 RUN apt-get install -y python-dev
 
 # odoo adhoc
-RUN apt-get install -y swig
+RUN apt-get install -y swig libssl-dev
 RUN pip install M2Crypto suds
 
 # odoo argentina
