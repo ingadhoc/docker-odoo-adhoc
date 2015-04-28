@@ -92,6 +92,9 @@ RUN pip install python-magic
 
 # odoo support
 RUN pip install erppeek
+
+# aeroo py-uno
+RUN apt-get install -y python-uno libreoffice-core
 ### END ADHOC customizations
 
 # Set default user when running the container
