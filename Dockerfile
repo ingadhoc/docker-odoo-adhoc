@@ -2,7 +2,8 @@ FROM odoo:8.0
 MAINTAINER Juan Jose Scarafia <jjs@adhoc.com.ar>
 
 ## Change this date when you want to make a new build
-ENV REFRESHED_AT 2015-03-15
+## Use odoo on release 20150401 
+ENV REFRESHED_AT 2015-05-12
 
 USER root
 
@@ -24,8 +25,9 @@ RUN apt-get install -y python-dev
 RUN apt-get install -y swig libssl-dev
 RUN pip install M2Crypto suds
 
-# odoo argentina
-RUN pip install geopy==0.95.1 BeautifulSoup
+# odoo argentina (nuevo modulo de FE)
+RUN apt-get install -y libffi-dev
+RUN pip install geopy==0.95.1 BeautifulSoup pyOpenSSL
 
 # odoo etl, infra and others
 RUN pip install openerp-client-lib fabric erppeek fabtools
