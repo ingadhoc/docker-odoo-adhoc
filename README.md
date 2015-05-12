@@ -7,6 +7,19 @@ Odoo official docker documentation: https://github.com/docker-library/docs/tree/
 
 This is an odoo image extended from the official one but with more dependencies installed.
 
+About tags and branches
+-----------------------
+In Github, each branch corresponds to an odoo version:
+* 7.0 --> odoo 7.0
+* 8.0 --> odoo 8.0
+* maser --> odoo master
+In each branch you will find the latest image. For each minor release we use tags (eg 8.0.0, 8.0.1). The same with docker images, tags works like this:
+* 7.0 --> Last odoo 7.0 image
+* 8.0 --> Last odoo 8.0 image
+* master --> Last odoo master image
+* 8.0.0 --> Corresponds to tag 8.0.0 on github, a tested release of this image
+* etc
+
 Configuration
 -------------
 
