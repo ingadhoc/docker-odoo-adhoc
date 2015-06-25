@@ -22,12 +22,14 @@ RUN pip install psycogreen
 RUN apt-get install -y python-dev
 
 # odoo adhoc
+# to be removed when we remove crypto
 RUN apt-get install -y swig libssl-dev
+# to be removed when we remove crypto
 RUN pip install M2Crypto suds
 
 # odoo argentina (nuevo modulo de FE)
-RUN apt-get install -y libffi-dev
-RUN pip install geopy==0.95.1 BeautifulSoup pyOpenSSL
+RUN apt-get install -y swig libffi-dev libssl-dev
+RUN pip install geopy==0.95.1 BeautifulSoup pyOpenSSL M2Crypto suds
 
 # odoo etl, infra and others
 RUN pip install openerp-client-lib fabric erppeek fabtools
