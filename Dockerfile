@@ -1,4 +1,4 @@
-FROM odoo:8.0
+FROM adhoc/odoo:8.0
 MAINTAINER Juan Jose Scarafia <jjs@adhoc.com.ar>
 
 ## Change this date when you want to make a new build
