@@ -32,8 +32,8 @@ RUN apt-get install -y swig libffi-dev libssl-dev python-m2crypto python-httplib
 RUN pip install geopy==0.95.1 BeautifulSoup pyOpenSSL suds
 # M2Crypto suponemos que no haria falta ahora
 RUN hg clone https://code.google.com/p/pyafipws
-RUN pip install -r requirements.txt
 WORKDIR /pyafipws/
+RUN pip install -r requirements.txt
 RUN python setup.py install
 RUN chmod 777 -R /usr/local/lib/python2.7/dist-packages/pyafipws/
 
