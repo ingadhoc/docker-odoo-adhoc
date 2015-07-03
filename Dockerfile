@@ -28,8 +28,14 @@ RUN apt-get install -y swig libssl-dev
 RUN pip install M2Crypto suds
 
 # odoo argentina (nuevo modulo de FE)
-RUN apt-get install -y swig libffi-dev libssl-dev
-RUN pip install geopy==0.95.1 BeautifulSoup pyOpenSSL M2Crypto suds
+RUN apt-get install -y swig libffi-dev libssl-dev python-m2crypto python-httplib2 mercurial
+RUN pip install geopy==0.95.1 BeautifulSoup pyOpenSSL suds
+# M2Crypto suponemos que no haria falta ahora
+RUN hg clone https://code.google.com/p/pyafipws
+RUN pip install -r requirements.txt
+WORKDIR /pyafipws/
+RUN python setup.py install
+RUN chmod 777 -R /usr/local/lib/python2.7/dist-packages/pyafipws/
 
 # odoo etl, infra and others
 RUN pip install openerp-client-lib fabric erppeek fabtools
