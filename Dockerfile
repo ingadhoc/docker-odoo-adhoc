@@ -21,6 +21,9 @@ RUN pip install psycogreen
 # used by many pip packages
 RUN apt-get install -y python-dev
 
+# odoo-extra
+RUN apt-get install -y python-matplotlib font-manager
+
 # odoo adhoc
 # to be removed when we remove crypto
 RUN apt-get install -y swig libssl-dev
