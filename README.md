@@ -9,19 +9,20 @@ This is an odoo image extended from the official one but with more dependencies 
 
 About tags and branches
 -----------------------
-In Github, each branch corresponds to an odoo version:
+In Github, each branch corresponds to an odoo version using controled odoo image (see https://github.com/ingadhoc/docker)
 * 7.0 --> odoo 7.0
 * 8.0 --> odoo 8.0
 * maser --> odoo master
 
-In each branch you will find the latest image. For each minor release we use tags (eg 8.0.0, 8.0.1).
+You also have some branchs for development purpose with a .x sufix like 8.0.x that use the correponand odoo image from https://github.com/ingadhoc/docker (in this eg 8.0.x)
 
-The same with docker images, tags works like this:
-* 7.0 --> Last odoo 7.0 image
-* 8.0 --> Last odoo 8.0 image
-* master --> Last odoo master image
+We also use tags for controlled versions, like eg 8.0.0, 8.0.1, this tags are image tags and also github tags
+
+So, in summary, you have this images:
+* 7.0 --> Last "stable" odoo 7.0 image (corresponds to git branch 7.0)
+* 8.0 --> Last "stable" odoo 8.0 image (corresponds to git branch 7.0)
 * 8.0.0 --> Corresponds to tag 8.0.0 on github, a tested release of this image
-* etc
+* 8.0.x --> Trunk image for 8.0 corresponds to tag 8.0.x on github (will be the next 8.0)
 
 Configuration
 -------------
