@@ -1,11 +1,18 @@
 FROM adhoc/odoo:8.0
 MAINTAINER Juan Jose Scarafia <jjs@adhoc.com.ar>
 
-## Change this date when you want to make a new build
-## Use odoo on release 20150401 
-ENV REFRESHED_AT 2015-05-12
-
 USER root
+
+# Generate locale (es_AR for right odoo es_AR language config, and C.UTF-8 for postgres and general locale data)
+ENV DEBIAN_FRONTEND noninteractive
+RUN  apt-get update -qq && apt-get install -y locales -qq
+RUN echo 'es_AR.UTF-8 UTF-8' >> /etc/locale.gen && locale-gen
+RUN echo 'es_US.UTF-8 UTF-8' >> /etc/locale.gen && locale-gen
+RUN echo 'C.UTF-8 UTF-8' >> /etc/locale.gen && locale-gen
+RUN dpkg-reconfigure locales && /usr/sbin/update-locale LANG=C.UTF-8
+ENV LANG C.UTF-8
+ENV LANGUAGE C.UTF-8
+ENV LC_ALL C.UTF-8
 
 # Install some deps
 RUN apt-get update \
