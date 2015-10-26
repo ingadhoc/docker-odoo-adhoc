@@ -31,18 +31,9 @@ RUN apt-get install -y python-dev
 # odoo-extra
 RUN apt-get install -y python-matplotlib font-manager
 
-# odoo adhoc
-# to be removed when we remove crypto
-RUN apt-get install -y swig libssl-dev
-# to be removed when we remove crypto
-# fix for M2Crypto install
-RUN ln -s /usr/include/x86_64-linux-gnu/openssl/opensslconf.h /usr/include/openssl/
-RUN pip install M2Crypto suds
-
 # odoo argentina (nuevo modulo de FE)
 RUN apt-get install -y swig libffi-dev libssl-dev python-m2crypto python-httplib2 mercurial
 RUN pip install geopy==0.95.1 BeautifulSoup pyOpenSSL suds
-# M2Crypto suponemos que no haria falta ahora
 RUN hg clone https://code.google.com/p/pyafipws
 WORKDIR /pyafipws/
 RUN pip install -r requirements.txt
