@@ -36,7 +36,7 @@ RUN apt-get install -y python-matplotlib font-manager
 RUN apt-get install -y swig libssl-dev
 # to be removed when we remove crypto
 # fix for M2Crypto install
-RUN ln -s ../x86_64-linux-gnu/openssl/opensslconf.h /usr/include/openssl/
+RUN ln -s /usr/include/x86_64-linux-gnu/openssl/opensslconf.h /usr/include/openssl/
 RUN pip install M2Crypto suds
 
 # odoo argentina (nuevo modulo de FE)
