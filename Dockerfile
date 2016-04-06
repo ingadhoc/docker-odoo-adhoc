@@ -38,7 +38,7 @@ RUN pip install mercadopago
 RUN apt-get install -y swig libffi-dev libssl-dev python-m2crypto python-httplib2 mercurial
 RUN pip install geopy==0.95.1 BeautifulSoup pyOpenSSL suds
 # para pyafipws
-RUN pip install https://raw.githubusercontent.com/reingart/pyafipws/master/requirements.txt
+RUN pip install -r https://raw.githubusercontent.com/reingart/pyafipws/master/requirements.txt
 RUN pip install git+https://github.com/reingart/pyafipws@master
 RUN chmod 777 -R /usr/local/lib/python2.7/dist-packages/pyafipws/
 
