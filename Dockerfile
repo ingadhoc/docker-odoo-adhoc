@@ -45,6 +45,9 @@ RUN chmod 777 -R /usr/local/lib/python2.7/dist-packages/pyafipws/
 # odoo etl, infra and others
 RUN pip install openerp-client-lib fabric erppeek fabtools
 
+# new infra
+RUN pip install google-api-python-client
+
 # oca reports
 RUN pip install xlwt
 
