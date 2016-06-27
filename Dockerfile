@@ -42,6 +42,9 @@ RUN pip install -r https://raw.githubusercontent.com/reingart/pyafipws/master/re
 RUN pip install git+https://github.com/reingart/pyafipws@master
 RUN chmod 777 -R /usr/local/lib/python2.7/dist-packages/pyafipws/
 
+# openupgradelib para varios modulos de oca y luego propios
+RUN pip install openupgradelib
+
 # odoo etl, infra and others
 RUN pip install openerp-client-lib fabric erppeek fabtools
 
