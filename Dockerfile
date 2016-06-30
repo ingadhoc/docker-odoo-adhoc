@@ -60,6 +60,10 @@ RUN pip install xlrd
 # oca partner contacts
 RUN pip install unicodecsv
 
+# oca telephony
+RUN pip install phonenumbers
+RUN pip install py-Asterisk
+
 # aeroo direct print
 RUN apt-get install -y libcups2-dev
 RUN pip install git+https://github.com/aeroo/aeroolib.git@master
