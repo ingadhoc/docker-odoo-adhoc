@@ -72,6 +72,9 @@ RUN pip install pycups==1.9.68
 # akretion/odoo-usability
 RUN pip install BeautifulSoup4
 
+# OCA server-tools
+RUN pip install validate_email
+
 # OCA knowledge
 RUN pip install python-magic
 
