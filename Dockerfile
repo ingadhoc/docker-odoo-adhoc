@@ -32,7 +32,9 @@ RUN apt-get install -y python-dev
 RUN apt-get install -y python-matplotlib font-manager
 
 # odoo argentina (nuevo modulo de FE)
-RUN apt-get install -y swig libffi-dev libssl-dev python-m2crypto python-httplib2 mercurial
+RUN apt-get install -y swig libffi-dev libssl-dev python-m2crypto python-httplib2
+# este deberiamos borrarlo porque tarda, es para pyOpenSSL que no deberia ser necesario si usamos pyafipws
+RUN apt-get install -y build-essential
 
 # aeroo direct print
 RUN apt-get install -y libcups2-dev
