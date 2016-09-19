@@ -31,55 +31,11 @@ RUN apt-get install -y python-dev
 # odoo-extra
 RUN apt-get install -y python-matplotlib font-manager
 
-# adhoc-website
-RUN pip install mercadopago
-
 # odoo argentina (nuevo modulo de FE)
 RUN apt-get install -y swig libffi-dev libssl-dev python-m2crypto python-httplib2 mercurial
-RUN pip install geopy==0.95.1 BeautifulSoup pyOpenSSL suds
-# para pyafipws
-RUN pip install -r https://raw.githubusercontent.com/reingart/pyafipws/master/requirements.txt
-RUN pip install git+https://github.com/reingart/pyafipws@master
-RUN chmod 777 -R /usr/local/lib/python2.7/dist-packages/pyafipws/
-
-# openupgradelib para varios modulos de oca y luego propios
-RUN pip install openupgradelib
-
-# odoo etl, infra and others
-RUN pip install openerp-client-lib fabric erppeek fabtools
-
-# new infra
-RUN pip install google-api-python-client
-
-# oca reports
-RUN pip install xlwt
-
-# odoo kineses
-RUN pip install xlrd
-
-# oca partner contacts
-RUN pip install unicodecsv
-
-# oca telephony
-RUN pip install phonenumbers
-RUN pip install py-Asterisk
 
 # aeroo direct print
 RUN apt-get install -y libcups2-dev
-RUN pip install git+https://github.com/aeroo/aeroolib.git@master
-RUN pip install pycups==1.9.68
-
-# akretion/odoo-usability
-RUN pip install BeautifulSoup4
-
-# OCA server-tools
-RUN pip install validate_email
-
-# OCA knowledge
-RUN pip install python-magic
-
-# odoo support
-RUN pip install erppeek
 
 ## Clean apt-get (copied from odoo)
 RUN apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false
