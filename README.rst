@@ -1,11 +1,48 @@
-odoo-adhoc
-==========
+odoo images
+===========
+
+Set of odoo images, starting from odoo-base, later odoo-oca, etc. The number prefix (eg. 10-) is only to have directories sorted as the images depends on each other
+
+
+Images summary
+--------------
+* adhoc/odoo: fork of odoo docker official image but with ubuntu and controlled (by adhoc) nightly build date
+* adhoc/odoo-base: base image with custom odoo.conf, entrypoint, packages and some scripts
+* adhoc/odoo-oca: extends odoo-base and includes all oca repositories (and some others) used by adhoc
+* adhoc/odoo-adhoc: extends odoo-oca and includes adhoc repositories
+
+
+For each image
+==============
+
+Build it
+--------
+
+Replace this variables:
+* image_sufix = base/oca/adhoc
+* image_dir = 10-odoo-base/20-odoo-oca
+* odoo_version = 8.0/9.0
+
+Build:
+* docker build $image_dir/$odoo_version/ -t odoo-$image_sufix:$odoo_version
+
+
+Try it
+------
+* run postgres:
+  * docker run --rm -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo --name db postgres:9.5
+* run odoo:
+  * docker build . -t odoo-base:8.0
+  * docker run --rm -ti -p 8069:8069 -p 8072:8072 --link db:db --name odoo odoo-$image_sufix:$odoo_version
+
+TODO BORRAR
+
 
 Odoo official dockerfile: https://github.com/odoo/docker/blob/master/8.0/Dockerfile
 Odoo official image: https://registry.hub.docker.com/_/odoo/
 Odoo official docker documentation: https://github.com/docker-library/docs/tree/master/odoo
 
-This is an odoo image extended from the official one but with more dependencies installed.
+This is an odoo image extends the official one but with more dependencies installed.
 
 About tags and branches
 -----------------------
