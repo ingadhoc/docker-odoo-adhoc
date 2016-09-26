@@ -1,6 +1,8 @@
 FROM ubuntu:xenial
 MAINTAINER Juan Jose Scarafia <jjs@adhoc.com.ar>
 
+ENV WKHTMLTOX_X64 http://download.gna.org/wkhtmltopdf/0.12/0.12.1/wkhtmltox-0.12.1_linux-trusty-amd64.deb
+
 # Install some deps, lessc and less-plugin-clean-css, and wkhtmltopdf
 RUN set -x; \
         apt-get update \
@@ -11,9 +13,10 @@ RUN set -x; \
             node-clean-css \
             python-pyinotify \
             python-renderpm \
-            python-support \
-        && curl -o wkhtmltox.deb -SL http://nightly.odoo.com/extra/wkhtmltox-0.12.1.2_linux-jessie-amd64.deb \
-        && echo '40e8b906de658a2221b15e4e8cd82565a47d7ee8 wkhtmltox.deb' | sha1sum -c - \
+            # not anymore on ubuntu 16.04
+            # python-support
+RUN set -x; \
+        curl -o wkhtmltox.deb -SL ${WKHTMLTOX_X64} \
         && dpkg --force-depends -i wkhtmltox.deb \
         && apt-get -y install -f --no-install-recommends \
         && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false npm \

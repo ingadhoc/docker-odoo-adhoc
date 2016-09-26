@@ -1,2 +1,4 @@
-Run as sudo:
-* Enter odoo container with root. Then run odoo with "sudo -E -u odoo odoo.py"
+Run as sudo (enter container with "-u root") and then run odoo with
+::
+
+Copy all included addons to ...

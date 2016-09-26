@@ -1,5 +1,4 @@
 FROM ubuntu:xenial
-# We could also use phusion/baseimage:latest
 MAINTAINER Juan Jose Scarafia <jjs@adhoc.com.ar>
 
 ENV WKHTMLTOX_X64 http://download.gna.org/wkhtmltopdf/0.12/0.12.1/wkhtmltox-0.12.1_linux-trusty-amd64.deb
