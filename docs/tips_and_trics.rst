@@ -1,5 +1,7 @@
 Tips and trics
 ==============
+TODO format and finish this
+
 if you want to create different projects you can use
 docker-compose up -p [project_name] (default: directory name)
 

@@ -10,7 +10,7 @@ services:
     odoo:
         image: $ODOO_IMAGE:$ODOO_VERSION
         external_links:
-            - aeroo_docs:aeroo
+            - aeroo-docs:aeroo
         depends_on:
             - db
         ports:

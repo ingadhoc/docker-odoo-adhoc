@@ -3,7 +3,7 @@ services:
     odoo_base:
         image: $ODOO_IMAGE:$ODOO_VERSION
         external_links:
-            - aeroo_docs:aeroo
+            - aeroo-docs:aeroo
         # podria ir aca pero puede ser mas practico en quien extiende
         ports:
             - "8069:8069"
