@@ -19,15 +19,13 @@ To use this docker compose file need:
 Run and usefull commands
 ========================
 
-Run
-> docker-compose up
-
-Odoo should be ready to be used on http://localhost:8069/
+* Run "docker-compose up"
+* Odoo should be ready to be used on http://localhost:8069/
 
 
 Links
 =====
-* [Images readme](dockerfiles/README.rst)
-* [More about docker compose](docs/docker_compose.rst)
-* [Roadmap / Known Issues](docs/TODO.rst)
-* [Inspired by](docs/inspired_by.rst)
+* `Images readme <dockerfiles/README.rst/>`_
+* `More about docker compose <docs/docker_compose.rst/>`_
+* `Roadmap / Known Issues <docs/TODO.rst/>`_
+* `Inspired by <docs/inspired_by.rst/>`_
