@@ -10,7 +10,8 @@ To use this docker compose file need:
 
 * docker-compose "pip install docker-compose"
 * docker-engine "sudo curl -sSL https://get.docker.com/ | sh"
-* se also recommend this so you can use docker without sudo:
+* we also recommend this so you can use docker without sudo
+
     * sudo groupadd docker
     * sudo gpasswd -a $USER docker
     * sudo service docker restart && newgrp docker
