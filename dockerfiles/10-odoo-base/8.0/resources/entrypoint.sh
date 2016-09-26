@@ -10,15 +10,15 @@ set -e
 export PGHOST PGPORT PGUSER PGPASSWORD
 
 # copy_sources
-function copy_sources {
-    echo "Making a copy of Extra Addons to Custom addons"
-    cp -R $EXTRA_ADDONS $CUSTOM_ADDONS
-}
+# function copy_sources {
+#     echo "Making a copy of Extra Addons to Custom addons"
+#     cp -R $EXTRA_ADDONS $CUSTOM_ADDONS
+# }
 
-if [ "$*" == "copy_sources" ]; then
-    copy_sources
-    exit 1
-fi
+# if [ "$*" == "copy_sources" ]; then
+#     copy_sources
+#     exit 1
+# fi
 
 # Ensure proper content for $UNACCENT
 if [ "$UNACCENT" != "True" ]; then

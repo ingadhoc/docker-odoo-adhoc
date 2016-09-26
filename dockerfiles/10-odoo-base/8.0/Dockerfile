@@ -62,7 +62,7 @@ RUN chown -R odoo /opt/odoo
 USER odoo
 ENV ETC_DIR /opt/odoo/etc
 ENV DATA_DIR /opt/odoo/data
-ENV CUSTOM_ADDONS /opt/odoo/custom-addons
+ENV CUSTOM_ADDONS /opt/odoo/custom-addons22
 ENV EXTRA_ADDONS /opt/odoo/extra-addons
 RUN mkdir -p ${ETC_DIR}
 RUN mkdir -p ${DATA_DIR}
@@ -72,7 +72,7 @@ RUN mkdir -p ${EXTRA_ADDONS}
 USER root
 
 # Mount persistent directories
-VOLUME [${DATA_DIR}, ${CUSTOM_ADDONS}]
+VOLUME ["${DATA_DIR}", "${CUSTOM_ADDONS}"]
 # no tendriamos porque montar "/opt/odoo/etc" ya que la idea es que se reconstruya el conf dinamicamente
 
 # rplace  entrypoint script and replace Odoo configuration file (new name)

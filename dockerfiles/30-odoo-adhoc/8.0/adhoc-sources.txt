@@ -20,4 +20,3 @@ https://github.com/ingadhoc/multi-company -b 8.0, ingadhoc-multi-company
 https://github.com/ingadhoc/project -b 8.0, ingadhoc-project
 https://github.com/ingadhoc/manufacture -b 8.0, ingadhoc-manufacture
 https://github.com/ingadhoc/survey -b 8.0, ingadhoc-survey
-https://github.com/ingadhoc/odoo-support -b 8.0, ingadhoc-odoo-support
