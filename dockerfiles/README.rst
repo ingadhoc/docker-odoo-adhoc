@@ -12,7 +12,7 @@ Each of this images has a tag 8.0 and 9.0 and can be found on docker registry. I
 * adhoc/odoo-ubuntu: fork of odoo docker official image but with ubuntu and controlled (by adhoc) nightly build date
 * adhoc/odoo-base: base image with custom odoo.conf, entrypoint, packages and some scripts
 * adhoc/odoo-oca: extends odoo-base and includes all oca repositories (and some others) used by adhoc
-* adhoc/odoo-ar: extends odoo-oca and includes ingadhoc repositories
+* adhoc/odoo-ar: Extends odoo-oca and includes repositories commonly used on argentina (ingadhoc repositories)
 
 
 Usefull Environment Variables
@@ -30,7 +30,7 @@ Build it
 --------
 
 Replace this variables:
-* image_sufix = base/oca/adhoc
+* image_sufix = base/oca/ar
 * image_dir = 10-odoo-base/20-odoo-oca/30-odoo-ar
 * odoo_version = 8.0/9.0
 

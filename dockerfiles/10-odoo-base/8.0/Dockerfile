@@ -62,7 +62,7 @@ RUN chown -R odoo /opt/odoo
 USER odoo
 ENV ETC_DIR /opt/odoo/etc
 ENV DATA_DIR /opt/odoo/data
-ENV CUSTOM_ADDONS /opt/odoo/custom-addons22
+ENV CUSTOM_ADDONS /opt/odoo/custom-addons
 ENV EXTRA_ADDONS /opt/odoo/extra-addons
 RUN mkdir -p ${ETC_DIR}
 RUN mkdir -p ${DATA_DIR}
