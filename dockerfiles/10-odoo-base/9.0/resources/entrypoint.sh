@@ -50,8 +50,7 @@ fi
 
 # Know if Postgres is listening
 function db_is_listening() {
-    sleep 1
-    psql --list > /dev/null 2>&1 || db_is_listening
+    psql --list > /dev/null 2>&1 || (sleep 1 && db_is_listening)
 }
 
 echo Waiting until the database server is listening... > /dev/stderr
@@ -59,8 +58,7 @@ db_is_listening
 
 # Check pg user exist
 function pg_user_exist() {
-    sleep 1
-    psql postgres -tAc "SELECT 1 FROM pg_roles WHERE rolname='$PGUSER'" > /dev/null 2>&1 || pg_user_exist
+    psql postgres -tAc "SELECT 1 FROM pg_roles WHERE rolname='$PGUSER'" > /dev/null 2>&1 || (sleep 1 && pg_user_exist)
 }
 
 echo Waiting until the pg user $PGUSER is created... > /dev/stderr
