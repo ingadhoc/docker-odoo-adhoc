@@ -12,7 +12,7 @@ RUN set -x; \
             node-less \
             node-clean-css \
             python-pyinotify \
-            python-renderpm \
+            python-renderpm
             # not anymore on ubuntu 16.04
             # python-support
 RUN set -x; \
