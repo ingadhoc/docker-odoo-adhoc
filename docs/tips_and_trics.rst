@@ -1,7 +1,39 @@
-Developers guid and usefull tips
-================================
-Run as sudo (enter container with "-u root") and then run odoo with
+Tips and trics
+==============
+if you want to create different projects you can use
+docker-compose up -p [project_name] (default: directory name)
+
+Run services in the background
+docker-compose up -d
+
+Stop background containers with docker-compose stop
+
+Create database with some module
+docker-compose run --rm --service-ports odoo bash
+
+see what is currently running
+docker-compose run --rm odoo -- -d [db_name] -i [modules_list]
+
+Run odoo shell:
+docker-compose run odoo -- shell
+or odoo.py shell inside container
+
+On development, you usually want to update modules, reinit some and test some odoo command line args. We recommend:
+#. Run container attached
 ::
+    docker-compose run --rm --service-ports odoo bash
+#. Start odoo and send any arg you want, for eg.
+::
+    odoo.py -u all
+
+If you want to go inside the container by default odoo user is used but it don't have sudo rights. So, if you want to make thinks with root, we suggest:
+#. Run as sudo (publishing ports, disposable container and enter bash)
+::
+    docker-compose run --rm --service-ports -u root odoo bash
+Run odoo with user odoo and preserving env vars
+::
+    sudo -E -u odoo odoo.y
+Run odoo with user odoo and preserving env vars
 
 Copy all included addons to ...
 

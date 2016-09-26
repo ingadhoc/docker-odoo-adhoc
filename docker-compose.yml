@@ -18,13 +18,9 @@ services:
             - "8072:8072"
         volumes:
             - ./data/custom-addons:/opt/odoo/custom-addons
-            - odoo_data:/var/lib/odoo/
-        environment:
-            # foreward compose vars to container
-            - ADMIN_PASSWORD=$ADMIN_PASSWORD
-            - WORKERS=$WORKERS
-            # - SERVER_MODE=$SERVER_MODE
-            # - SERVER_WIDE_MODULES=$SERVER_WIDE_MODULES
+            - odoo_data:/opt/odoo/data
+        env_file:
+            - .env
 volumes:
     pg_data:
     odoo_data:

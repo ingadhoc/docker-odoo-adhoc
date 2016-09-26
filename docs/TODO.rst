@@ -1,11 +1,12 @@
 ROADMAP / KNOWN ISSUES
 ======================
-* integrar nginx
+* ver manera practica de usar compose para version 8 y 9 indistintamente (y/o distintos productos)
+* integrar nginx (implementar con -p para levantar varios proyectos)
+* integrar distintos ambientes de test, prod etc
 * ver si usamos el template del odoo.conf y reemplazamos valores ya sea iniciando odoo y bajandolo, usando sed o usando script que generamos en python
 * ver si queremos descargar y exponer todos los sources descargados a un path local para facilitar desarrollo. Por un lado esta este issue (https://github.com/docker/docker/issues/3639) que si montamos en un dockerfile luego no podemos agregar en otros más adelante. POdriamos usar docker cp para copiar todo lo que está en el container al host
 * descargar repositorios privados usando claves
-
-PROBAR shell!!!
+* terminar de entender los volumes y ver si es necesario definirlos en el compose o no
 
 docker-compose:
 * Ver si sirve:

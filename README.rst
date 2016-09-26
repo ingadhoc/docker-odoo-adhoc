@@ -29,9 +29,9 @@ Run and usefull commands
 
 Links
 =====
-* `TODO: Using for production  <dockerfiles/developers_guide.rst/>`_
-* `Developers Guide <dockerfiles/developers_guide.rst/>`_
+* `TODO: Using for production  <docs/developers_guide.rst/>`_
+* `Tips and trics <docs/tips_and_trics.rst/>`_
+* `Developers Guide <docs/developers_guide.rst/>`_
 * `Images readme <dockerfiles/README.rst/>`_
-.. * `More about docker compose <docs/docker_compose.rst/>`_
 * `Roadmap / Known Issues <docs/TODO.rst/>`_
 * `Inspired by <docs/inspired_by.rst/>`_
