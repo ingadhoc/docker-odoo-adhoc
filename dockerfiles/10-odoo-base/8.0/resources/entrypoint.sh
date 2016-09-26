@@ -9,6 +9,7 @@ set -e
 : ${PGPASSWORD:=$DB_ENV_POSTGRES_PASSWORD}
 export PGHOST PGPORT PGUSER PGPASSWORD
 
+# copy_sources
 function copy_sources {
     echo "Making a copy of Extra Addons to Custom addons"
     cp -R $EXTRA_ADDONS $CUSTOM_ADDONS

@@ -20,6 +20,9 @@ RUN apt-get update \
 # sudo and other useful tools
 RUN apt-get install -y sudo nano htop 
 
+# update pip and install setuptools (required for intalling pip requirements)
+RUN pip install --upgrade setuptools pip
+
 # Workers and longpolling dependencies
 RUN apt-get install -y python-gevent
 RUN pip install psycogreen

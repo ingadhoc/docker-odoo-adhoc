@@ -3,6 +3,7 @@ Odoo Docker Compose and Images
 This repository contains a set of dockerfiles to build different docker images used by ADHOC.
 It also provides a docker-compose file to use odoo in a simple way.
 
+
 Requirements
 ============
 
@@ -17,6 +18,7 @@ To use this docker compose file need:
     * sudo service docker restart && newgrp docker
 * clone this repository "git clone git@github.com:ingadhoc/docker-odoo-adhoc.git"
 
+
 Run and usefull commands
 ========================
 
@@ -26,6 +28,8 @@ Run and usefull commands
 
 Links
 =====
+* `TODO: Using for production  <dockerfiles/developers_guide.rst/>`_
+* `Developers Guide <dockerfiles/developers_guide.rst/>`_
 * `Images readme <dockerfiles/README.rst/>`_
 * `More about docker compose <docs/docker_compose.rst/>`_
 * `Roadmap / Known Issues <docs/TODO.rst/>`_
