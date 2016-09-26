@@ -24,13 +24,14 @@ Run and usefull commands
 
 * Run "docker-compose up"
 * Odoo should be ready to be used on http://localhost:8069/
-
+* Check .env for choosing odoo version and other useful configurations
+* Remove everything (containers and data) "docker-compose down -v"
 
 Links
 =====
 * `TODO: Using for production  <dockerfiles/developers_guide.rst/>`_
 * `Developers Guide <dockerfiles/developers_guide.rst/>`_
 * `Images readme <dockerfiles/README.rst/>`_
-* `More about docker compose <docs/docker_compose.rst/>`_
+.. * `More about docker compose <docs/docker_compose.rst/>`_
 * `Roadmap / Known Issues <docs/TODO.rst/>`_
 * `Inspired by <docs/inspired_by.rst/>`_

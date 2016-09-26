@@ -100,6 +100,7 @@ ENV \
     PGHOST=db \
     WORKERS=4 \
     ADMIN_PASSWORD=admin \
+    SERVER_MODE=test \
     DB_TEMPLATE=template1
 
 # odoo server use this env var as default conf, check if v9 or v10 rename it

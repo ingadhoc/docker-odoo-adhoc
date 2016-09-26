@@ -19,7 +19,6 @@ Usefull Environment Variables
 -----------------------------
 
 * ADMIN_PASSWORD: will be used on the odoo.conf (default 'admin')
-* CUSTOM_ADDONS: location for addons added outside image (default '/opt/odoo/custom-addons')
 * WORKERS: odoo workers (default '4')
 
 
@@ -40,7 +39,7 @@ Build:
 Eg:
 * docker build 10-odoo-base/8.0/ -t odoo-base:8.0
 * docker build 20-odoo-oca/8.0/ -t odoo-oca:8.0
-* docker build 30-odoo-ar/8.0/ -t odoo-oca:8.0
+* docker build 30-odoo-ar/8.0/ -t odoo-ar:8.0
 
 
 Try it

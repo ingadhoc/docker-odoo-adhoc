@@ -1,0 +1,30 @@
+version: '2'
+services:
+    db:
+        image: postgres:9.5
+        environment:
+            - POSTGRES_USER=odoo
+            - POSTGRES_PASSWORD=odoo
+        volumes:
+            - pg_data:/var/lib/postgresql/data
+    odoo:
+        image: $ODOO_IMAGE:$ODOO_VERSION
+        external_links:
+            - aeroo_docs:aeroo
+        depends_on:
+            - db
+        ports:
+            - "8069:8069"
+            - "8072:8072"
+        volumes:
+            - ./data/custom-addons:/opt/odoo/custom-addons
+            - odoo_data:/var/lib/odoo/
+        environment:
+            # foreward compose vars to container
+            - ADMIN_PASSWORD=$ADMIN_PASSWORD
+            - WORKERS=$WORKERS
+            # - SERVER_MODE=$SERVER_MODE
+            # - SERVER_WIDE_MODULES=$SERVER_WIDE_MODULES
+volumes:
+    pg_data:
+    odoo_data:

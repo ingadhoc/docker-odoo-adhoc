@@ -12,7 +12,7 @@ export PGHOST PGPORT PGUSER PGPASSWORD
 # copy_sources
 function copy_sources {
     echo "Making a copy of Extra Addons to Custom addons"
-    cp -R $EXTRA_ADDONS $CUSTOM_ADDONS
+    cp -R $EXTRA_ADDONS/* $CUSTOM_ADDONS
 }
 
 if [ "$*" == "copy_sources" ]; then
@@ -40,6 +40,9 @@ db_host = $PGHOST
 db_template = $DB_TEMPLATE
 admin_passwd = $ADMIN_PASSWORD
 data_dir = $DATA_DIR
+aeroo.docs_enabled = True
+server_mode = ${SERVER_MODE}
+server_wide_modules = ${SERVER_WIDE_MODULES}
 # auto_reload = True
 " > $ODOO_CONF
 
