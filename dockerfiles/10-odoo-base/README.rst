@@ -11,8 +11,28 @@ We use adhoc/odoo instead of odoo official build becaue in "adhoc/odoo" we can c
 Files and directories
 ---------------------
 
-* We create "/opt/odoo" and take inside everthing that matters to this odoo image:
+* We create "/opt/odoo" and take inside everthing that matters to this odoo image (dir / VAR):
  * "/opt/odoo/etc": for odoo.conf, Published as volume
  * "/opt/odoo/data": for odoo data dir. Published as volume
- * "/opt/odoo/extra_addons": for container included addons. Not published
- * "/opt/odoo/resources": resources used by this image. Not published
+ * "/opt/odoo/extra_addons / EXTRA_ADDONS": for container included addons. Not published
+ * "/opt/odoo/custom_addons / CUSTOM_ADDONS": for user custom addons. Published as volume
+ * "/opt/odoo/resources / RESOURCES": resources used by this image. Not published
+
+Environment variables
+---------------------
+
+* Commonly used:
+  * ADMIN_PASSWORD: will be used on the odoo.conf (default 'admin')
+  * CUSTOM_ADDONS: location for addons added outside image (default '/opt/odoo/custom-addons')
+  * WORKERS: odoo workers (default '4')
+  * DATABASE: database for odoo conf (none set by default, no need to se any)
+* Advance use:
+  * UNACCENT: to enable or disable unaccent functionality (default 'True')
+* Shouldn't be changed:
+  * DB_TEMPLATE: odoo template db (default 'tempalte1')
+  * ODOO_CONF: odoo configuaration file location (default '/opt/odoo/etc/odoo.conf')
+  * EXTRA_ADDONS: location used for addons added by images (default '/opt/odoo/extra-addons')
+  * PGUSER: postgres user (default 'odoo')
+  * PGPASSWORD: postgres pass (default 'odoo')
+  * ODOO_SERVER: run server command (default 'odoo.py')
+  * RESOURCES: resources (common files used by this image builds) location (default '/opt/odoo/resources/')

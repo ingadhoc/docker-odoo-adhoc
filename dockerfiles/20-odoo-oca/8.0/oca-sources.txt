@@ -1,0 +1,1 @@
+https://github.com/akretion/odoo-usability -b 9.0, akretion-odoo-usability

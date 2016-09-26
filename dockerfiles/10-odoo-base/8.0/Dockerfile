@@ -1,5 +1,4 @@
-FROM odoo:8.0-ubuntu
-#FROM adhoc/odoo:8.0-ubuntu
+FROM adhoc/odoo-ubuntu:8.0
 MAINTAINER Juan Jose Scarafia <jjs@adhoc.com.ar>
 
 USER root
@@ -8,12 +7,18 @@ USER root
 # TODO better C.UTF-8 or en_US.UTF-8?
 RUN locale-gen en_US.UTF-8 && update-locale
 RUN locale-gen es_AR.UTF-8 && update-locale
-RUN echo 'LANG="es_AR.UTF-8"' > /etc/default/locale
+RUN echo 'LANG="en_US.UTF-8"' > /etc/default/locale
+ENV LANG en_US.UTF-8  
+ENV LANGUAGE en_US:en  
+ENV LC_ALL en_US.UTF-8
 
-# Install some deps
+# Install some deps (if we install with no-recommends later we have some errors with pip)
 RUN apt-get update \
         && apt-get install -y \
         python-pip git
+
+# sudo and other useful tools
+RUN apt-get install -y sudo nano htop 
 
 # Workers and longpolling dependencies
 RUN apt-get install -y python-gevent
@@ -52,28 +57,44 @@ RUN chown -R odoo /opt/odoo
 
 # changing user is required by odoo which won't start with root
 USER odoo
-RUN mkdir -p /opt/odoo/etc
-RUN mkdir -p /opt/odoo/data
-#RUN mkdir -p /opt/odoo/var
+ENV ETC_DIR /opt/odoo/etc
+ENV DATA_DIR /opt/odoo/data
 ENV CUSTOM_ADDONS /opt/odoo/custom-addons
 ENV EXTRA_ADDONS /opt/odoo/extra-addons
+RUN mkdir -p ${ETC_DIR}
+RUN mkdir -p ${DATA_DIR}
 RUN mkdir -p ${CUSTOM_ADDONS}
 RUN mkdir -p ${EXTRA_ADDONS}
 
 USER root
 
 # Mount persistent directories
-VOLUME ["/opt/odoo/etc", "/opt/odoo/data", "/opt/odoo/extra-addons"]
-# VOLUME ["/opt/odoo/var", "/opt/odoo/etc", "/opt/odoo/additional_addons", "/opt/odoo/data"]
+VOLUME [${DATA_DIR}, ${CUSTOM_ADDONS}]
+# no tendriamos porque montar "/opt/odoo/etc" ya que la idea es que se reconstruya el conf dinamicamente
 
 # rplace  entrypoint script and replace Odoo configuration file (new name)
-COPY ./resources/ /opt/odoo/resources
-RUN chown -R odoo /opt/odoo/resources/
-
-# Set the default config file
-ENV ODOO_CONF /opt/odoo/etc/odoo.conf
+ENV RESOURCES /opt/odoo/resources/
+COPY ./resources/ ${RESOURCES}
+RUN chown -R odoo ${RESOURCES}
 
 # change entrypoint
 ENTRYPOINT ["/opt/odoo/resources/entrypoint.sh"]
+CMD ["odoo.py"]
+
+# Variables used by the launch scripts
+ENV \
+    ODOO_SERVER=odoo.py \
+    ODOO_CONF=/opt/odoo/etc/odoo.conf \
+    # odoo conf variables
+    UNACCENT=True \
+    PGUSER=odoo \
+    PGPASSWORD=odoo \
+    PGHOST=db \
+    WORKERS=4 \
+    ADMIN_PASSWORD=admin \
+    DB_TEMPLATE=template1
+
+# odoo server use this env var as default conf, check if v9 or v10 rename it
+ENV OPENERP_SERVER $ODOO_CONF
 
 USER odoo
