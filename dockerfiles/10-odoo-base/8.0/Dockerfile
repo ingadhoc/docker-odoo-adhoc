@@ -21,7 +21,8 @@ RUN apt-get update \
 RUN apt-get install -y sudo nano htop 
 
 # update pip and install setuptools (required for intalling pip requirements)
-RUN pip install --upgrade setuptools pip
+RUN pip install --upgrade pip
+RUN pip install --upgrade setuptools
 
 # Workers and longpolling dependencies
 RUN apt-get install -y python-gevent
