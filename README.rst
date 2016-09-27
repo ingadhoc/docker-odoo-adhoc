@@ -10,7 +10,7 @@ Requirements
 
 To use this docker compose file need:
 
-* docker-compose "pip install docker-compose"
+* docker-compose "sudo pip install --upgrade docker-compose"
 * docker-engine "sudo curl -sSL https://get.docker.com/ | sh"
 * we also recommend this so you can use docker without sudo
 
