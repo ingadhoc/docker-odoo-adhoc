@@ -1,6 +1,9 @@
 ROADMAP / KNOWN ISSUES
 ======================
+* Certificados para afip, certificados ssl, certificado para infra conectarse, certificado para descarga repo
+* backups y sync a google drive
 * ver manera practica de usar compose para version 8 y 9 indistintamente (y/o distintos productos)
+* implementar load si sigue sin andar el de odoo que toma del odoo conf
 * change aeroo docs to ubuntu 16.04 https://github.com/ingadhoc/docker-aeroo-docs/blob/master/Dockerfile
 * integrar nginx (implementar con -p para levantar varios proyectos)
 * integrar distintos ambientes de test, prod etc
