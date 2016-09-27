@@ -1,6 +1,7 @@
 ROADMAP / KNOWN ISSUES
 ======================
 * ver manera practica de usar compose para version 8 y 9 indistintamente (y/o distintos productos)
+* change aeroo docs to ubuntu 16.04 https://github.com/ingadhoc/docker-aeroo-docs/blob/master/Dockerfile
 * integrar nginx (implementar con -p para levantar varios proyectos)
 * integrar distintos ambientes de test, prod etc
 * ver si usamos el template del odoo.conf y reemplazamos valores ya sea iniciando odoo y bajandolo, usando sed o usando script que generamos en python
