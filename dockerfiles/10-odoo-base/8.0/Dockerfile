@@ -43,6 +43,13 @@ RUN apt-get install -y swig libffi-dev libssl-dev python-m2crypto python-httplib
 # aeroo direct print
 RUN apt-get install -y libcups2-dev
 
+# fix for this issue https://github.com/odoo/odoo/issues/9113 (issue raised when installing website_animate)
+RUN apt-get install -y npm
+RUN npm install -g less less-plugin-clean-css
+RUN apt-get install -y nodejs-legacy
+RUN rm /usr/bin/lessc; ln -s /usr/local/bin/lessc /usr/bin/lessc
+RUN apt-mark hold node-less
+
 ## Clean apt-get (copied from odoo)
 RUN apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false
 RUN apt-get clean
