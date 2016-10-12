@@ -2,6 +2,17 @@ Tips and trics
 ==============
 TODO format and finish this
 
+If you want to access files with an editor outside you can mount a director to yout host by ssh
+    1. Install sshfs "apt-get install sshfs"
+    2. Creat local directory to mount ("mkdir data/odoo")
+    3. Mount to local directory ("sshfs -o identityFile=~/.ssh/id_rsa root@172.27.0.3:/opt/odoo/ ./data/odoo")
+    3. Por ahora, hasta que movamos el odoo server (si instalamos odoo sin runbot) o algo por el estilo, podemos: 
+        a: mkdir data/odoo_server
+        b. Mount to local directory ("sshfs -o identityFile=~/.ssh/id_rsa root@172.27.0.3:/usr/lib/python2.7/dist-packages/openerp/ ./data/odoo_server")
+    4. unmount with "sudo umount -l data/odoo" 
+    5. Para hacerlo permanente editamos "sudo nano /etc/fstab" y agregamos al final algo como "sshfs#root@172.27.0.3:/opt/odoo/ /home/jjscarafia/odoo/docker/docker-odoo-adhoc"
+    6. luego reiniciamos
+
 if you want to create different projects you can use
 docker-compose up -p [project_name] (default: directory name)
 
