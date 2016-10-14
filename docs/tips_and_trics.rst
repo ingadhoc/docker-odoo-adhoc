@@ -2,7 +2,11 @@ Tips and trics
 ==============
 TODO format and finish this
 
-If you want to access files with an editor outside you can mount a director to yout host by ssh
+IMPORTANTE
+    para esto falta agregar la clave publica!
+    (tambien es necesario exponer puerto ssh)
+    habria que ver como levantar siempre el container con igual hostname
+If you want to access files with an editor outside you can mount a director to yout host by ssh 
     1. Install sshfs "apt-get install sshfs"
     2. Creat local directory to mount ("mkdir data/odoo")
     3. Mount to local directory ("sshfs -o identityFile=~/.ssh/id_rsa root@172.27.0.3:/opt/odoo/ ./data/odoo")
@@ -12,6 +16,7 @@ If you want to access files with an editor outside you can mount a director to y
     4. unmount with "sudo umount -l data/odoo" 
     5. Para hacerlo permanente editamos "sudo nano /etc/fstab" y agregamos al final algo como "sshfs#root@172.27.0.3:/opt/odoo/ /home/jjscarafia/odoo/docker/docker-odoo-adhoc"
     6. luego reiniciamos
+    (probar sshfs -o IdentityFile=~/.ssh/id_rsa,auto_cache,reconnect,defer_permissions,negative_vncache,volname=Deploy root@linw.live:/opt/wildfly-8.1.0.Final/standalone/deployments ~/Deploy)
 
 if you want to create different projects you can use
 docker-compose up -p [project_name] (default: directory name)
@@ -46,6 +51,7 @@ If you want to go inside the container by default odoo user is used but it don't
 Run odoo with user odoo and preserving env vars
 ::
     sudo -E -u odoo odoo.y
+    (NOTA: en la v9 esto no me anduvo y tuve que entrar a bash y luego correro odoo, sudo -H -E -u odoo bash y luego 'odoo.py' un error de permisos raro)
 Run odoo with user odoo and preserving env vars
 
 Copy all included addons to ...

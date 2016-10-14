@@ -35,6 +35,7 @@ RUN apt-get install -y python-dev build-essential
 
 # odoo-extra
 RUN apt-get install -y python-matplotlib font-manager
+RUN pip install simplejson
 
 # odoo argentina (nuevo modulo de FE)
 RUN apt-get install -y swig libffi-dev libssl-dev python-m2crypto python-httplib2

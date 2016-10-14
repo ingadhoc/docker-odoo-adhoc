@@ -1,6 +1,8 @@
 ROADMAP / KNOWN ISSUES
 ======================
 * Certificados para afip, certificados ssl, certificado para infra conectarse, certificado para descarga repo
+* Otras cosas: ver de agregar scripts para agilizar desarrollo como por ejemplo: montado de carpeta, hacer execute a server, 
+* ver si para desarrollo es utili usar una build local que permita hacer apt-get update, instalar ssh y agregar otras dependencias
 * backups y sync a google drive
 * agregar mas parametros al conf "timezone = Europe/Paris", idioma, country, proxy mode, log, etc
 * ver manera practica de usar compose para version 8 y 9 indistintamente (y/o distintos productos)
