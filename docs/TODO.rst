@@ -1,5 +1,7 @@
 ROADMAP / KNOWN ISSUES
 ======================
+* ignorar commits en .env o algo así y tmb lo que se agrega en data
+* ver que el copy me traiga tmb el odoo para poder ver contenido? O que otra forma podemos usar? algun script para hacer un pull de todos los repos? Tal vez copiamos el contenido a otra carpeta para poder ver el codigo simplemente? en realidad es interesante siempre agregar prints y demás a odoo tmb. Déberíamos ver como abrir con sublime una carpeta de un container
 * Certificados para afip, certificados ssl, certificado para infra conectarse, certificado para descarga repo
 * backups y sync a google drive
 * agregar mas parametros al conf "timezone = Europe/Paris", idioma, country, proxy mode, log, etc
