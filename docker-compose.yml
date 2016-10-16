@@ -8,6 +8,10 @@ services:
         volumes:
             - pg_data:/var/lib/postgresql/data
     odoo:
+        # build:
+        #     context: ./data
+        #     dockerfile: Dockerfile-dev-$ODOO_VERSION
+        # TODO ver como hacemos par que esto se cambie desde otro lugar
         image: $ODOO_IMAGE:$ODOO_VERSION
         external_links:
             - aeroo-docs:aeroo
