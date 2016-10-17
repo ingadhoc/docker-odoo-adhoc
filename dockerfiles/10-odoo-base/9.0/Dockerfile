@@ -18,7 +18,7 @@ RUN apt-get update \
         python-pip git
 
 # sudo and other useful tools
-RUN apt-get install -y sudo nano htop 
+RUN apt-get install -y sudo nano htop ssh
 
 # update pip and install setuptools (required for intalling pip requirements)
 RUN pip install --upgrade pip
