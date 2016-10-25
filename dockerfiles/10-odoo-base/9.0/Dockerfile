@@ -18,7 +18,7 @@ RUN apt-get update \
         python-pip git
 
 # sudo and other useful tools
-RUN apt-get install -y sudo nano htop ssh
+RUN apt-get install -y sudo nano htop ssh wget unzip
 
 # update pip and install setuptools (required for intalling pip requirements)
 RUN pip install --upgrade pip
@@ -29,6 +29,7 @@ RUN apt-get install -y python-gevent
 RUN pip install psycogreen
 
 ## Install pip dependencies for adhoc used odoo repositories
+RUN pip install openupgradelib
 
 # used by many pip packages
 RUN apt-get install -y python-dev build-essential
