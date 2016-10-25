@@ -1,5 +1,7 @@
 ROADMAP / KNOWN ISSUES
 ======================
+* para desarrollo seguramente mejor correr con detach y luego hacer un exec o atachearse de alguna manera
+* agregar comandos para montar sudo mount -o bind /home/jjscarafia/odoo/90/data/custom-addons/odoo-argentina/ custom-addons/odoo-argentina y demonstar sudo -u umount -f custom-addons/odoo-argentina
 * ignorar commits en .env o algo así y tmb lo que se agrega en data
 * ver que el copy me traiga tmb el odoo para poder ver contenido? O que otra forma podemos usar? algun script para hacer un pull de todos los repos? Tal vez copiamos el contenido a otra carpeta para poder ver el codigo simplemente? en realidad es interesante siempre agregar prints y demás a odoo tmb. Déberíamos ver como abrir con sublime una carpeta de un container
 * Certificados para afip, certificados ssl, certificado para infra conectarse, certificado para descarga repo
