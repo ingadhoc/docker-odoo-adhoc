@@ -1,0 +1,75 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+#FILE
+# vagrant/Vagrantfile
+#PURPOSE
+# Build a docker-compose Odoo VM and Docker images quasi deterministicly.
+# Useful for testing and for base for building production images.
+#USE
+#	cd vagrant; vagrant up
+#AUTHOR
+# (C) 2016 Gary Wallis unxs@unxs.io for Adhoc Engineering S.A.
+
+Vagrant.configure("2") do |config|
+
+  config.vm.box = "ubuntu/xenial64"
+
+  config.vm.provider :virtualbox do |vb|
+    vb.name = "adhoc0"
+  end
+
+  config.vm.network "public_network", ip: "10.0.0.17"
+
+    config.vm.provision "shell", inline: <<-SHELL
+        grep -q 'mesg n' /root/.profile && sed -i '/mesg n/d' /root/.profile && echo 'Ignore the previous error...';
+	apt-get update --assume-yes;
+	if [ "$?" != "0" ];then
+          echo "apt-get update failed";
+          exit 1;
+	fi
+        apt-get upgrade --assume-yes;
+	if [ "$?" != "0" ];then
+          echo "apt-get upgrade failed";
+          exit 1;
+	fi
+	apt-get install python-pip --assume-yes;
+	if [ "$?" != "0" ];then
+          echo "python-pip install failed";
+          exit 1;
+	fi
+        pip install --upgrade docker-compose;
+	if [ "$?" != "0" ];then
+          echo "pip install failed";
+          exit 1;
+	fi
+        curl -sSL https://get.docker.com/ | /bin/bash;
+	if [ "$?" != "0" ];then
+          echo "docker script failed";
+          exit 1;
+	fi
+        groupadd docker; gpasswd -a ubuntu docker;
+        git clone https://github.com/ingadhoc/docker-odoo-adhoc.git;
+	if [ "$?" != "0" ];then
+          echo "git clone failed";
+          exit 1;
+	fi
+        systemctl enable docker;
+	if [ "$?" != "0" ];then
+          echo "docker systemd enabled failed";
+          exit 1;
+	fi
+        systemctl start docker;
+	if [ "$?" != "0" ];then
+          echo "docker systemd start failed";
+          exit 1;
+	fi
+	cd docker-odoo-adhoc;
+	docker-compose up -d;
+	if [ "$?" != "0" ];then
+          echo "docker-compose up failed";
+          exit 1;
+	fi
+	echo "odoo available on port 8069";
+    SHELL
+end
