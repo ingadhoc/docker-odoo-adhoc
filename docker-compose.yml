@@ -25,6 +25,18 @@ services:
             - odoo_data:/opt/odoo/data
         env_file:
             - .env
+        #these extra env items are for nginx-proxy automated reverse proxy
+	#we need to design an automated hostname/dns subsystem 
+        environment:
+            - VIRTUAL_HOST=odoo0.local
+            - VIRTUAL_PORT=8069
+
+#dependency: nginx-proxy must be running before and must create this network
+networks:
+  default:
+    external:
+      name: dockernginxadhoc_backend
+
 volumes:
     pg_data:
     odoo_data:
