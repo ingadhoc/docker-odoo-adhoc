@@ -84,8 +84,7 @@ Vagrant.configure("2") do |config|
 	fi
 
 	#start db and odoo
-        cd ~;
-	cd docker-odoo-adhoc;
+	cd ..;
 	docker-compose up -d;
 	if [ "$?" != "0" ];then
           echo "docker-compose up odoo failed";

@@ -22,52 +22,23 @@
 
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "ubuntu/xenial64"
+  config.vm.box = "xenial64pip"
 
   config.vm.provider :virtualbox do |vb|
-	vb.name = "adhoc0"
+	vb.name = "adhoc0-dev"
 	config.vm.network "private_network", :type => 'dhcp', :name => 'vboxnet0', :adapter => 2
   end
 
   config.vm.provision "shell", inline: <<-SHELL
 
 	grep -q 'mesg n' /root/.profile && sed -i '/mesg n/d' /root/.profile && echo 'Ignore the previous error...';
-	apt-get update --assume-yes;
-	if [ "$?" != "0" ];then
-          echo "apt-get update failed";
-          exit 1;
-	fi
-        apt-get upgrade --assume-yes;
-	if [ "$?" != "0" ];then
-          echo "apt-get upgrade failed";
-          exit 1;
-	fi
-	apt-get install python-pip --assume-yes;
-	if [ "$?" != "0" ];then
-          echo "python-pip install failed";
-          exit 1;
-	fi
-        pip install --upgrade docker-compose;
-	if [ "$?" != "0" ];then
-          echo "pip install failed";
-          exit 1;
-	fi
-        curl -sSL https://get.docker.com/ | /bin/bash;
-	if [ "$?" != "0" ];then
-          echo "docker script failed";
-          exit 1;
-	fi
-        groupadd docker; gpasswd -a ubuntu docker;
-        git clone https://github.com/unxs/docker-odoo-adhoc.git;
+
+        git clone https://github.com/unxs0/docker-odoo-adhoc.git;
 	if [ "$?" != "0" ];then
           echo "git clone failed";
           exit 1;
 	fi
-        systemctl enable docker;
-	if [ "$?" != "0" ];then
-          echo "docker systemd enabled failed";
-          exit 1;
-	fi
+
         systemctl start docker;
 	if [ "$?" != "0" ];then
           echo "docker systemd start failed";
@@ -85,8 +56,7 @@ Vagrant.configure("2") do |config|
 	fi
 
 	#start db and odoo
-        cd ~;
-	cd docker-odoo-adhoc;
+        cd ..;
 	docker-compose up -d;
 	if [ "$?" != "0" ];then
           echo "docker-compose up odoo failed";
