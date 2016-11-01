@@ -12,7 +12,7 @@
 #	Automatic nginx reverse proxy
 #	Odoo ERP w/DB in separate container
 #USE
-#	cd vagrant; vagrant up
+#	cd vagrant; VAGRANT_VAGRANTFILE=Vagrantfile.dev vagrant up
 #	For VM guests on Ubuntu Xenial
 #	Requires Virtual box host only nework vboxnet0 setup with virtual box dhcp server
 #	running on host. And you may need to run:

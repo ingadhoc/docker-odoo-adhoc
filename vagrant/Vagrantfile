@@ -6,6 +6,10 @@
 #PURPOSE
 # Build a docker-compose Odoo VM and Docker images quasi deterministicly.
 # Useful for testing and for base for building production images.
+#PROVIDES
+#	Ubuntu Xenial VM Docker Compose production ready
+#	Automatic nginx reverse proxy
+#	Odoo ERP w/DB in separate container
 #USE
 #	cd vagrant; vagrant up
 #	For VM guests on Ubuntu Xenial
@@ -72,8 +76,7 @@ Vagrant.configure("2") do |config|
 	#this creates the dockernginxadhox_backend network
 	#it must be created once and before any other containers.
 	#automated reverse proxy nginx-proxy
-	cd docker-odoo-adhoc;
-	cd docker-nginx-adhoc;
+	cd docker-odoo-adhoc/docker-nginx-adhoc;
 	docker-compose up -d;
 	if [ "$?" != "0" ];then
           echo "docker-compose up nginx failed";
