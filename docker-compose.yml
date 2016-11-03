@@ -26,7 +26,7 @@ services:
         env_file:
             - .env
         #these extra env items are for nginx-proxy automated reverse proxy
-	#we need to design an automated hostname/dns subsystem 
+        #we need to design an automated hostname/dns subsystem 
         environment:
             - VIRTUAL_HOST=odoo0.local
             - VIRTUAL_PORT=8069
