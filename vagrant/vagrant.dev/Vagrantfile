@@ -31,12 +31,15 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision "shell", inline: <<-SHELL
 
+	echo "check network";
 	ping -c 1 8.8.8.8 > /dev/null 2>&1;
 	if [ "$?" != "0" ];then
+		echo "configure network";
 		ifconfig enp0s8 172.28.128.3 netmask 255.255.255.0 up;
 		route add default gw 172.28.128.1 enp0s8;
 	fi
 
+	echo "download dev unxs0 github repo";
 	rm -rf docker-odoo-adhoc; 
         git clone https://github.com/unxs0/docker-odoo-adhoc.git;
 	if [ "$?" != "0" ];then
@@ -46,6 +49,7 @@ Vagrant.configure("2") do |config|
 	#this creates the dockernginxadhox_backend network
 	#it must be created once and before any other containers.
 	#automated reverse proxy nginx-proxy
+	echo "nginx startup";
 	cd docker-odoo-adhoc/docker-nginx-adhoc;
 	docker-compose up -d;
 	if [ "$?" != "0" ];then
@@ -54,6 +58,7 @@ Vagrant.configure("2") do |config|
 	fi
 
 	#start db and odoo
+	echo "db and odoo startup";
 	cd ..;
 	docker-compose up -d;
 	if [ "$?" != "0" ];then
