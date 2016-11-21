@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 #FILE
-# vagrant/Vagrantfile
+# vagrant/vagrant.dev/Vagrantfile
 #PURPOSE
 # Build a docker-compose Odoo VM and Docker images quasi deterministicly.
 # Useful for testing and for base for building production images.
@@ -11,7 +11,7 @@
 #	Automatic nginx reverse proxy
 #	Odoo ERP w/DB in separate container
 #USE
-#	cd vagrant; vagrant up
+#	cd vagrant/vagrant.dev; vagrant up
 #	For VM guests on Ubuntu Xenial
 #	Requires Virtual box host only nework vboxnet0 setup with virtual box dhcp server
 #	running on host. And you may need to run:
@@ -21,53 +21,27 @@
 
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "ubuntu/xenial64"
+  config.vm.box = "xenial64pip"
+  config.ssh.username = "ubuntu"
 
   config.vm.provider :virtualbox do |vb|
-	vb.name = "adhoc0"
+	vb.name = "adhoc0-dev"
 	config.vm.network "private_network", :type => 'dhcp', :name => 'vboxnet0', :adapter => 2
   end
 
   config.vm.provision "shell", inline: <<-SHELL
 
-	grep -q 'mesg n' /root/.profile && sed -i '/mesg n/d' /root/.profile && echo 'Ignore the previous error...';
-	apt-get update --assume-yes;
+	echo "check network";
+	ping -c 1 8.8.8.8 > /dev/null 2>&1;
 	if [ "$?" != "0" ];then
-          echo "apt-get update failed";
-          exit 1;
-	fi
-        apt-get upgrade --assume-yes;
-	if [ "$?" != "0" ];then
-          echo "apt-get upgrade failed";
-          exit 1;
-	fi
-	apt-get install python-pip --assume-yes;
-	if [ "$?" != "0" ];then
-          echo "python-pip install failed";
-          exit 1;
-	fi
-        pip install --upgrade docker-compose;
-	if [ "$?" != "0" ];then
-          echo "pip install failed";
-          exit 1;
-	fi
-        curl -sSL https://get.docker.com/ | /bin/bash;
-	if [ "$?" != "0" ];then
-          echo "docker script failed";
-          exit 1;
-	fi
-        systemctl enable docker;
-	if [ "$?" != "0" ];then
-          echo "docker systemd enabled failed";
-          exit 1;
-	fi
-        systemctl start docker;
-	if [ "$?" != "0" ];then
-          echo "docker systemd start failed";
-          exit 1;
+		echo "configure network";
+		ifconfig enp0s8 172.28.128.3 netmask 255.255.255.0 up;
+		route add default gw 172.28.128.1 enp0s8;
 	fi
 
-        git clone https://github.com/ingadhoc/docker-odoo-adhoc.git;
+	echo "download dev unxs0 github repo";
+	rm -rf docker-odoo-adhoc; 
+        git clone https://github.com/unxs0/docker-odoo-adhoc.git;
 	if [ "$?" != "0" ];then
           echo "git clone failed";
           exit 1;
@@ -75,6 +49,7 @@ Vagrant.configure("2") do |config|
 	#this creates the dockernginxadhox_backend network
 	#it must be created once and before any other containers.
 	#automated reverse proxy nginx-proxy
+	echo "nginx startup";
 	cd docker-odoo-adhoc/docker-nginx-adhoc;
 	docker-compose up -d;
 	if [ "$?" != "0" ];then
@@ -83,6 +58,7 @@ Vagrant.configure("2") do |config|
 	fi
 
 	#start db and odoo
+	echo "db and odoo startup";
 	cd ..;
 	docker-compose up -d;
 	if [ "$?" != "0" ];then
