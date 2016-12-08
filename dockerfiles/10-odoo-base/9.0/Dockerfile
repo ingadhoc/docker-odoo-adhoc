@@ -96,7 +96,7 @@ ENV \
     PGUSER=odoo \
     PGPASSWORD=odoo \
     PGHOST=db \
-    WORKERS=4 \
+    WORKERS=6 \
     ADMIN_PASSWORD=admin \
     SERVER_MODE=test \
     DB_TEMPLATE=template1

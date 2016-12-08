@@ -1,6 +1,8 @@
 https://github.com/ingadhoc/aeroo_reports -b 9.0, ingadhoc-aeroo_reports
 https://github.com/ingadhoc/odoo-support -b 9.0, ingadhoc-odoo-support
 https://github.com/ingadhoc/odoo-argentina -b 9.0, ingadhoc-odoo-argentina
+https://github.com/ingadhoc/argentina-reporting -b 9.0, ingadhoc-argentina-reporting
+https://github.com/ingadhoc/argentina-sale -b 9.0, ingadhoc-argentina-sale
 https://github.com/ingadhoc/odoo-web -b 9.0, ingadhoc-odoo-web
 https://github.com/ingadhoc/website -b 9.0, ingadhoc-website
 https://github.com/ingadhoc/product -b 9.0, ingadhoc-product
@@ -17,6 +19,7 @@ https://github.com/ingadhoc/reporting-engine -b 9.0, ingadhoc-reporting-engine
 https://github.com/ingadhoc/miscellaneous -b 9.0, ingadhoc-miscellaneous
 https://github.com/ingadhoc/stock -b 9.0, ingadhoc-stock
 https://github.com/ingadhoc/multi-company -b 9.0, ingadhoc-multi-company
+https://github.com/ingadhoc/multi-store -b 9.0, ingadhoc-multi-store
 https://github.com/ingadhoc/project -b 9.0, ingadhoc-project
 https://github.com/ingadhoc/manufacture -b 9.0, ingadhoc-manufacture
 https://github.com/ingadhoc/survey -b 9.0, ingadhoc-survey

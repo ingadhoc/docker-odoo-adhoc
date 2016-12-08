@@ -1,7 +1,5 @@
-https://github.com/akretion/odoo-usability -b 9.0, akretion-odoo-usability
 https://github.com/it-projects-llc/website-addons -b 9.0, it-projects-llc-website-addons
 https://github.com/odoomrp/odoomrp-utils -b 9.0, odoomrp-odoomrp-utils
-https://github.com/Vauxoo/ecommerce -b 9.0, vauxoo-ecommerce
 https://github.com/OCA/server-tools -b 9.0, oca-server-tools
 https://github.com/OCA/sale-workflow -b 9.0, oca-sale_workflow
 https://github.com/OCA/sale-financial -b 9.0, oca-sale-financial
@@ -29,4 +27,5 @@ https://github.com/OCA/website -b 9.0, oca-website
 https://github.com/OCA/product-variant -b 9.0, oca-product-variant
 https://github.com/OCA/product-attribute -b 9.0, oca-product-attribute
 https://github.com/OCA/partner-contact -b 9.0, oca-partner-contact
+https://github.com/OCA/management-system -b 9.0, oca-management-system
 https://github.com/OCA/e-commerce -b 9.0, oca-e-commerce
