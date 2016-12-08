@@ -2,26 +2,23 @@
 # vi: set ft=ruby :
 
 #FILE
-# vagrant/Vagrantfile
+# vagrant/Vagrantfile.newbox
 #PURPOSE
-# Build a docker-compose Odoo VM and Docker images quasi deterministicly.
-# Useful for testing and for base for building production images.
+#	Create an intermediate base box from Xenial for
+#	development use. Saves downloading while developing base Vagrantfile.
 #PROVIDES
 #	Ubuntu Xenial VM Docker Compose production ready
-#	Automatic nginx reverse proxy
-#	Odoo ERP w/DB in separate container
 #USE
-#	cd vagrant; vagrant up
-#	For VM guests on Ubuntu Xenial
-#	Requires Virtual box host only nework vboxnet0 setup with virtual box dhcp server
-#	running on host. And you may need to run:
-#	$ VBoxManage dhcpserver remove --netname HostInterfaceNetworking-vboxnet0
+#	cd vagrant; VAGRANT_VAGRANTFILE=Vagrantfile.newbox vagrant up
+#	vagrant package --output xenial64pip.box
+#	vagrant box add xenial64pip xenial64pip.box
 #AUTHOR
 # (C) 2016 Gary Wallis unxs@unxs.io for Adhoc Engineering S.A.
 
 Vagrant.configure("2") do |config|
 
   config.vm.box = "ubuntu/xenial64"
+  config.ssh.insert_ssh_key = false
 
   config.vm.provider :virtualbox do |vb|
 	vb.name = "adhoc0"
@@ -56,6 +53,7 @@ Vagrant.configure("2") do |config|
           echo "docker script failed";
           exit 1;
 	fi
+        #groupadd docker; gpasswd -a ubuntu docker;
         systemctl enable docker;
 	if [ "$?" != "0" ];then
           echo "docker systemd enabled failed";
@@ -66,34 +64,12 @@ Vagrant.configure("2") do |config|
           echo "docker systemd start failed";
           exit 1;
 	fi
+	systemctl stop docker;
 
-        git clone https://github.com/ingadhoc/docker-odoo-adhoc.git;
-	if [ "$?" != "0" ];then
-          echo "git clone failed";
-          exit 1;
-	fi
-	#this creates the dockernginxadhox_backend network
-	#it must be created once and before any other containers.
-	#automated reverse proxy nginx-proxy
-	cd docker-odoo-adhoc/docker-nginx-adhoc;
-	docker-compose up -d;
-	if [ "$?" != "0" ];then
-          echo "docker-compose up nginx failed";
-          exit 1;
-	fi
-
-	#start db and odoo
-	cd ..;
-	docker-compose up -d;
-	if [ "$?" != "0" ];then
-          echo "docker-compose up odoo failed";
-          exit 1;
-	fi
-
-	#make docker containers persist reboot
-	docker update --restart=always dockerodooadhoc_odoo_1;
-	docker update --restart=always dockerodooadhoc_db_1;
-	docker update --restart=always nginx-proxy;
-	echo "odoo available on port 8069 local and via nginx on port 80";
+	#clean up to keep small
+	sudo apt-get clean;
+	dd if=/dev/zero of=/EMPTY bs=1M;
+	rm -f /EMPTY;
+	cat /dev/null > ~/.bash_history && history -c;
   SHELL
 end

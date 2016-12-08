@@ -1,0 +1,17 @@
+ABOUT
+	+Quick and dirty docker-engine and docker bash scripts.
+	for creating a Rancher multi server test/dev environment.
+	see ./registry dir for v2 docker container registry creation.
+SERVER LAYOUT AND ARCH
+	+Run docker on your laptop for local repository
+	docker pull, docker tag and then docker push to local repo.
+	+docker-engine w/virtualbox creates your RancherOS linux VMs
+	for multi host docker service stacks.	
+	+Docker Instances:
+		Repo registry v2 local docker.
+		RancherOS VM for Rancher server docker container.
+		Two or more RancherOS VMs for Rancher hosts for stack docker containers.
+NOTES
+	You may need to snat/masq iptables the virtualbox device
+AUTHOR
+	+Gary Wallis (C) 2016 for AdHoc Ing. S.A.
