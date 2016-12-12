@@ -1,6 +1,7 @@
 https://github.com/ingadhoc/aeroo_reports -b 8.0, ingadhoc-aeroo_reports
 https://github.com/ingadhoc/odoo-support -b 8.0, ingadhoc-odoo-support
 https://github.com/ingadhoc/odoo-argentina -b 8.0, ingadhoc-odoo-argentina
+https://github.com/ingadhoc/odoo-infrastructure -b 9.0, ingadhoc-odoo-infrastructure
 https://github.com/ingadhoc/odoo-web -b 8.0, ingadhoc-odoo-web
 https://github.com/ingadhoc/website -b 8.0, ingadhoc-website
 https://github.com/ingadhoc/product -b 8.0, ingadhoc-product
