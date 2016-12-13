@@ -19,7 +19,7 @@ To use this docker compose file need:
     * sudo gpasswd -a $USER docker
     * sudo service docker restart && newgrp docker
 * clone this repository "git clone git@github.com:ingadhoc/docker-odoo-adhoc.git"
-* If you want to have areoo docs convertion you shoud run only once "docker run --name="aeroo-docs" --restart=always -d adhoc/aeroo-docs"
+* If you want to have areoo docs convertion you shoud run only once "docker run --name="aeroo" --restart=always -d adhoc/aeroo-docs"
 
 
 Run and usefull commands

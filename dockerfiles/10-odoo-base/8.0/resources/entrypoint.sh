@@ -40,10 +40,29 @@ db_host = $PGHOST
 db_template = $DB_TEMPLATE
 admin_passwd = $ADMIN_PASSWORD
 data_dir = $DATA_DIR
-aeroo.docs_enabled = True
-server_mode = ${SERVER_MODE}
-server_wide_modules = ${SERVER_WIDE_MODULES}
+proxy_mode = $PROXY_MODE
+without_demo = $WITHOUT_DEMO
+server_mode = $SERVER_MODE
+server_wide_modules = $SERVER_WIDE_MODULES
 # auto_reload = True
+
+# other performance parameters
+# db_maxconn = 32
+# limit_memory_hard = 2684354560
+# limit_memory_soft = 2147483648
+# limit_request = 8192
+# limit_time_cpu = 600
+# limit_time_real = 1200
+
+# aeroo config
+aeroo.docs_enabled = True
+aeroo.docs_host = $AEROO_DOCS_HOST
+
+# afip certificates
+afip_homo_pkey_file = $AFIP_HOMO_PKEY_FILE
+afip_homo_cert_file = $AFIP_HOMO_CERT_FILE
+afip_prod_pkey_file = $AFIP_PROD_PKEY_FILE
+afip_prod_cert_file = $AFIP_PROD_CERT_FILE
 " > $ODOO_CONF
 
 # If database is available, use it

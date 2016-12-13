@@ -101,6 +101,7 @@ ENV \
     SERVER_MODE=test \
     PROXY_MODE=True \
     WITHOUT_DEMO=True \
+    AEROO_DOCS_HOST=aeroo \
     AFIP_HOMO_PKEY_FILE = /opt/odoo/backups/homo.pkey \
     AFIP_HOMO_CERT_FILE = /opt/odoo/backups/homo.cert \
     AFIP_PROD_PKEY_FILE = /opt/odoo/backups/prod.pkey \

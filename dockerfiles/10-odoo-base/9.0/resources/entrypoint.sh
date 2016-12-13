@@ -56,14 +56,13 @@ server_wide_modules = $SERVER_WIDE_MODULES
 
 # aeroo config
 aeroo.docs_enabled = True
-# aeroo.docs_host = aeroo
+aeroo.docs_host = $AEROO_DOCS_HOST
 
 # afip certificates
 afip_homo_pkey_file = $AFIP_HOMO_PKEY_FILE
 afip_homo_cert_file = $AFIP_HOMO_CERT_FILE
 afip_prod_pkey_file = $AFIP_PROD_PKEY_FILE
 afip_prod_cert_file = $AFIP_PROD_CERT_FILE
-
 " > $ODOO_CONF
 
 # If database is available, use it

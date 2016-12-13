@@ -110,6 +110,13 @@ ENV \
     WORKERS=6 \
     ADMIN_PASSWORD=admin \
     SERVER_MODE=test \
+    PROXY_MODE=True \
+    WITHOUT_DEMO=True \
+    AEROO_DOCS_HOST=aeroo \
+    AFIP_HOMO_PKEY_FILE = /opt/odoo/backups/homo.pkey \
+    AFIP_HOMO_CERT_FILE = /opt/odoo/backups/homo.cert \
+    AFIP_PROD_PKEY_FILE = /opt/odoo/backups/prod.pkey \
+    AFIP_PROD_CERT_FILE = /opt/odoo/backups/prod.cert \
     DB_TEMPLATE=template1
 
 # odoo server use this env var as default conf, check if v9 or v10 rename it
