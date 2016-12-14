@@ -13,7 +13,11 @@ Prepare Nginx
 -------------
 
 * cd nginx
-* Copy your cert and key in the dir.
+* Copy your cert and key into the dir as::
+
+	./cert.pem
+	./cert.key
+
 * Modify nginx.conf and conf.d/default.conf if needed.
 * Build the new Nginx docker image::
 
