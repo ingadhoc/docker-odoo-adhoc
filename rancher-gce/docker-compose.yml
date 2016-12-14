@@ -1,0 +1,15 @@
+version: '2'
+services:
+    rancher:
+        image: rancher/server
+        ports:
+            - "8080:8080"
+        restart: unless-stopped
+    custom-nginx:
+        depends_on:
+          - rancher
+        image: custom-nginx
+        ports:
+            - "443:443"
+            - "80:80"
+        restart: unless-stopped
