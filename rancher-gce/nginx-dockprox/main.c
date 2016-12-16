@@ -60,8 +60,8 @@ int main(void)
 {
 	struct sockaddr_un address;
 	int  socket_fd, nbytes;
-	char buffer[102400]={""};
-	char cJson[102400]={""};
+	char buffer[1024000]={""};
+	char cJson[1024000]={""};
 
 	socket_fd=socket(PF_UNIX, SOCK_STREAM, 0);
 	if(socket_fd<0)
@@ -80,10 +80,10 @@ int main(void)
 		return 1;
  	}
 
-	nbytes=snprintf(buffer,102400,"GET /containers/json HTTP/1.1\nHost: localhost\n\n\n");
+	nbytes=snprintf(buffer,1024000,"GET /containers/json HTTP/1.1\nHost: localhost\n\n");
 	write(socket_fd,buffer,nbytes);
 
-	nbytes=read(socket_fd,buffer,102400);
+	nbytes=read(socket_fd,buffer,1024000);
 	buffer[nbytes] = 0;
 
 	char *cp=NULL;
@@ -91,15 +91,22 @@ int main(void)
 	if((cp=strstr(buffer,"Content-Length: "))!=NULL)
 	{
 		sscanf(cp+16,"%u",&uConLen);
-		//printf("uConLen=%u\n",uConLen);
+		printf("uConLen=%u\n",uConLen);
 		char *cp2=NULL;
 		if((cp2=strchr(cp+17,'\n'))!=NULL)
 		{
 			*(cp2+1)=0;
 			unsigned uHeadLen=strlen(buffer);
-			//printf("uHeadLen=%u\n",uHeadLen);
+			printf("uHeadLen=%u\n",uHeadLen);
 			buffer[uConLen+uHeadLen+1]=0;
-			sprintf(cJson,"%.102399s",cp2+3);
+			sprintf(cJson,"%.1023999s",cp2+3);
+		}
+	}
+	else
+	{
+		if((cp=strchr(buffer,'['))!=NULL)
+                {
+			sprintf(cJson,"%.1023999s",cp+1);
 		}
 	}
 
