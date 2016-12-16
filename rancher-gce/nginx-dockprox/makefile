@@ -7,7 +7,7 @@
 #GIT_VERSION := $(shell git describe --dirty --always --tags)
 
 CFLAGS=-Wall -DGitVersion=\"$(GIT_VERSION)\"
-LIBS= ./cJSON/libcjson.a -lm
+LIBS= libcjson.a -lm
 
 nginx-dockprox: main.o
 	cc main.o -o nginx-dockprox $(LIBS) 
