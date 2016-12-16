@@ -24,9 +24,9 @@ fi
 if [ "$UNACCENT" != "True" ]; then
     UNACCENT=False
 fi
-
+# we add sort to find so ingadhoc paths are located before the others and prefered by odoo
 echo Patching configuration > /dev/stderr
-addons=$(find $CUSTOM_ADDONS $EXTRA_ADDONS -mindepth 1 -maxdepth 1 -type d | tr '\n' ',')
+addons=$(find $CUSTOM_ADDONS $EXTRA_ADDONS -mindepth 1 -maxdepth 1 -type d | sort | tr '\n' ',')
 
 echo "
 [options]
