@@ -5,7 +5,7 @@
 #
 
 GIT_VERSION := $(shell git describe --dirty --always --tags)
-CFLAGS+=-Wall -Werror -std=gnu99 -O2 -DGitVersion=\"$(GIT_VERSION)\"
+CFLAGS+=-Wall -DGitVersion=\"$(GIT_VERSION)\"
 LDFLAGS+=`curl-config --libs`
 
 TARGETS=docker
