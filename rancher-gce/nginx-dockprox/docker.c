@@ -19,6 +19,7 @@
 #include "log.h"
 #include "buf.h"
 
+
 unsigned uSplitPorts(char const *cVirtualPort,char cVirtualPorts[8][32])
 {
 	char str[512]={""};
@@ -198,8 +199,32 @@ int main(void)
 				unsigned uNumPorts=0;
 				uNumPorts=uSplitPorts(cVirtualPort,cVirtualPorts);
 				ParseFromJsonArray(cEnv,"VIRTUAL_HOST",cVirtualHost);
+				register int n=0;
 				if(cVirtualHost[0])
 				{
+					FILE *fp;
+					if((fp=fopen("/etc/nginx/conf.d/docker.conf","w"))!=NULL)
+					{
+						for(n=0;n<uNumPorts&&n<8;n++)
+						{
+							fprintf(fp,"upstream %s {\n"
+								"	server %s:%s;\n"
+								"}\n"
+									,cVirtualHost,
+									cContainerIp,cVirtualPorts[n]);
+							fprintf(fp,"server {\n"
+								"	listen 80;\n"
+								"	server_name %s;\n"
+								"	location / {\n"
+								"		proxy_pass http://%s:%s;\n"
+								"	}\n"
+								"}\n"
+									,cVirtualHost,
+									cContainerIp,cVirtualPorts[n]);
+						}
+						fclose(fp);
+					}
+
 					printf("cVirtualHost=%s\n",cVirtualHost);
 					printf("cVirtualPort=%s\n",cVirtualPort);
 					printf("cId=%s\n",cId);
@@ -207,9 +232,10 @@ int main(void)
 					printf("io.rancher.container.ip=%s\n",cContainerIp);
 					//debug only uNumPorts=uSplitPorts("8069,8073,8080",cVirtualPorts);
 					printf("uNumPorts=%u\n",uNumPorts);
-					register int n=0;
 					for(n=0;n<uNumPorts&&n<8;n++)
+					{
 						printf("cVirtualPorts[%d]=%s\n",n,cVirtualPorts[n]);
+					}
 				}
 			}
 		}
@@ -218,6 +244,10 @@ int main(void)
        			jsmntok_t *t2 = &tokens[i+1];
 			str = json_token_tostr(js, t2);
 			sprintf(cContainerIp,"%s",str);
+			char *cp;
+			//chop cidr
+			if((cp=strchr(cContainerIp,'/'))!=NULL)
+				*cp=0;
 		}
 	}
 
