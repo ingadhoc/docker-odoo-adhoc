@@ -4,16 +4,20 @@
 #NOTES
 #
 
-#GIT_VERSION := $(shell git describe --dirty --always --tags)
+GIT_VERSION := $(shell git describe --dirty --always --tags)
+CFLAGS+=-Wall -Werror -std=gnu99 -O2 -DGitVersion=\"$(GIT_VERSION)\"
+LDFLAGS+=`curl-config --libs`
 
-CFLAGS=-Wall -DGitVersion=\"$(GIT_VERSION)\"
-LIBS= libcjson.a -lm
+TARGETS=docker
+OBJS=buf.o log.o json.o jsmn.o
 
-nginx-dockprox: main.o
-	cc main.o -o nginx-dockprox $(LIBS) 
-
-main.o: main.c
-	cc -c main.c -o main.o $(CFLAGS)
+all: $(TARGETS) .gitignore
 
 clean:
-	rm -f *.o nginx-dockprox
+	$(RM) $(TARGETS)
+	$(RM) $(OBJS)
+
+docker: $(OBJS) docker.o
+	$(CC) -o $@ $^ $(LDFLAGS)
+
+.PHONY: all clean
