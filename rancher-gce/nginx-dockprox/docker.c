@@ -209,11 +209,6 @@ void GetLabelsByContainerId(char const *cId, char *cEnv)
 int main(void)
 {
 
-	UpstreamConfTemplate(stdout,"odoo0","123.23.4.5","2345");
-	UpstreamConfTemplate(stdout,"odoo0chat","123.23.78.6","9012");
-	ServerConfTemplate(stdout,"odoo0.unxs.io","odoo0","odoo0chat");
-	exit(0);
-
 	char cURL[] = "http://localhost/containers/json";
 	char *js = json_fetch_unixsock(cURL);
 	jsmntok_t *tokens = json_tokenise(js);
@@ -254,8 +249,16 @@ int main(void)
 	*
 	*/
 
+	FILE *fp;
+	if((fp=fopen("/etc/nginx/conf.d/docker.conf","w"))==NULL)
+	{
+		fprintf(stderr,"Could not open /etc/nginx/conf.d/docker.conf\n");
+		exit(2);
+	}
+
 	char cId[100]={""};
 	char cContainerName[256]={""};
+	char cContainerNameChat[256]={""};
 	char cContainerIp[256]={""};
 	char cEnv[512]={""};
 	char cVirtualHost[128]={""};
@@ -287,9 +290,11 @@ int main(void)
 		{
 			jsmntok_t *t2 = &tokens[i+1];
 			str = json_token_tostr(js, t2);
-			if(strstr(str,"odoo"))
+			if(strstr(str,"odoo") && !strstr(str,"-db"))
 			{
 				sprintf(cContainerName,"%.128s",str);
+				sprintf(cContainerNameChat,"%.128s-chat",str);
+				fprintf(fp,"#cId=%s\n",cId);
 				//debug only printf("cEnv=%s\n",cEnv);
 				ParseFromJsonArray(cEnv,"VIRTUAL_PORT",cVirtualPort);
 				char cVirtualPorts[8][32]={"","","","","","","",""};
@@ -299,28 +304,15 @@ int main(void)
 				register int n=0;
 				if(cVirtualHost[0])
 				{
-					FILE *fp;
-					if((fp=fopen("/etc/nginx/conf.d/docker.conf","w"))!=NULL)
+					for(n=0;n<uNumPorts&&n<8;n++)
 					{
-						for(n=0;n<uNumPorts&&n<8;n++)
-						{
-							fprintf(fp,"upstream %s {\n"
-								"	server %s:%s;\n"
-								"}\n"
-									,cVirtualHost,
-									cContainerIp,cVirtualPorts[n]);
-							fprintf(fp,"server {\n"
-								"	listen 80;\n"
-								"	server_name %s;\n"
-								"	location / {\n"
-								"		proxy_pass http://%s;\n"
-								"	}\n"
-								"}\n"
-									,cVirtualHost,
-									cVirtualHost);
-						}
-						fclose(fp);
+						if(n==0)
+							UpstreamConfTemplate(fp,cContainerName,cContainerIp,cVirtualPorts[n]);
+						else
+							UpstreamConfTemplate(fp,cContainerNameChat,cContainerIp,cVirtualPorts[n]);
 					}
+					ServerConfTemplate(fp,cVirtualHost,cContainerName,cContainerNameChat);
+					fprintf(fp,"#cId=%s\n\n",cId);
 
 					printf("cVirtualHost=%s\n",cVirtualHost);
 					printf("cVirtualPort=%s\n",cVirtualPort);
@@ -348,5 +340,6 @@ int main(void)
 		}
 	}
 
+	fclose(fp);
 	return 0;
 }//main()
