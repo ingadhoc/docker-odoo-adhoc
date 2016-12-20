@@ -18,6 +18,100 @@
 #include "json.h"
 #include "log.h"
 #include "buf.h"
+#include "template.h"
+#define MAXBUFLEN 102400
+
+
+void AppFunctions(FILE *fp,char *cFunction)
+{
+}//void AppFunctions(FILE *fp,char *cFunction)
+
+void UpstreamConfTemplate(FILE *fpOut,
+		char const *cUpstreamServerName,
+		char const *cUpstreamIp,
+		char const *cUpStreamPort)
+{
+	struct t_template template;
+
+	template.cpName[0]="cUpstreamServerName";
+	template.cpValue[0]=cUpstreamServerName;
+
+	template.cpName[1]="cUpstreamIp";
+	template.cpValue[1]=cUpstreamIp;
+
+	template.cpName[2]="cUpStreamPort";
+	template.cpValue[2]=cUpStreamPort;
+
+	template.cpName[3]="";//close template!
+
+
+	char cTemplate[MAXBUFLEN + 1];
+	FILE *fp = fopen("/var/local/dockprox/upstream.conf.tpl", "r");
+	if(fp!=NULL)
+	{
+		size_t newLen=fread(cTemplate,sizeof(char),MAXBUFLEN,fp);
+		if(ferror(fp)!=0)
+		{
+			fputs("Error reading file upstream.conf.tpl\n", stderr);
+			exit(1);
+		}
+		else
+		{
+			cTemplate[newLen++] = '\0'; /* Just to be safe. */
+		}
+		fclose(fp);
+	}
+	else
+	{
+		fputs("Error opening file /var/local/dockprox/upstream.conf.tpl\n", stderr);
+	}
+	Template(cTemplate,&template,fpOut);
+
+}//void UpstreamConfTemplate(FILE *fpOut,...)
+
+
+void ServerConfTemplate(FILE *fpOut,
+	char const *cPublicServerName,
+	char const *cUpstreamServerName,
+	char const *cUpstreamServerNameChat)
+{
+	struct t_template template;
+
+	template.cpName[0]="cPublicServerName";
+	template.cpValue[0]=cPublicServerName;
+
+	template.cpName[1]="cUpstreamServerName";
+	template.cpValue[1]=cUpstreamServerName;
+
+	template.cpName[2]="cUpstreamServerNameChat";
+	template.cpValue[2]=cUpstreamServerNameChat;
+
+	template.cpName[3]="";//close template!
+
+
+	char cTemplate[MAXBUFLEN + 1];
+	FILE *fp = fopen("/var/local/dockprox/server.conf.tpl", "r");
+	if(fp!=NULL)
+	{
+		size_t newLen=fread(cTemplate,sizeof(char),MAXBUFLEN,fp);
+		if(ferror(fp)!=0)
+		{
+			fputs("Error reading file server.conf.tpl\n", stderr);
+			exit(1);
+		}
+		else
+		{
+			cTemplate[newLen++] = '\0'; /* Just to be safe. */
+		}
+		fclose(fp);
+	}
+	else
+	{
+		fputs("Error opening file /var/local/dockprox/server.conf.tpl\n", stderr);
+	}
+	Template(cTemplate,&template,fpOut);
+
+}//void ServerConfTemplate(FILE *fpOut,...)
 
 
 unsigned uSplitPorts(char const *cVirtualPort,char cVirtualPorts[8][32])
@@ -31,12 +125,9 @@ unsigned uSplitPorts(char const *cVirtualPort,char cVirtualPorts[8][32])
 	while (p)
 	{
 		res = realloc (res, sizeof (char*) * ++n_spaces);
-
 		if (res == NULL)
 			exit (-1); /* memory allocation failed */
-
 		res[n_spaces-1] = p;
-
 		p = strtok (NULL, ",");
 	}
 
@@ -117,6 +208,12 @@ void GetLabelsByContainerId(char const *cId, char *cEnv)
 
 int main(void)
 {
+
+	UpstreamConfTemplate(stdout,"odoo0","123.23.4.5","2345");
+	UpstreamConfTemplate(stdout,"odoo0chat","123.23.78.6","9012");
+	ServerConfTemplate(stdout,"odoo0.unxs.io","odoo0","odoo0chat");
+	exit(0);
+
 	char cURL[] = "http://localhost/containers/json";
 	char *js = json_fetch_unixsock(cURL);
 	jsmntok_t *tokens = json_tokenise(js);
@@ -216,11 +313,11 @@ int main(void)
 								"	listen 80;\n"
 								"	server_name %s;\n"
 								"	location / {\n"
-								"		proxy_pass http://%s:%s;\n"
+								"		proxy_pass http://%s;\n"
 								"	}\n"
 								"}\n"
 									,cVirtualHost,
-									cContainerIp,cVirtualPorts[n]);
+									cVirtualHost);
 						}
 						fclose(fp);
 					}

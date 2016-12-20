@@ -9,7 +9,7 @@ CFLAGS+=-Wall -DGitVersion=\"$(GIT_VERSION)\"
 LDFLAGS+=`curl-config --libs`
 
 TARGETS=docker
-OBJS=buf.o log.o json.o jsmn.o
+OBJS=buf.o log.o json.o jsmn.o template.o
 
 all: $(TARGETS) .gitignore
 
