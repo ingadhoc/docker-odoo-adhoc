@@ -9,6 +9,9 @@
  *	MIT License
 */
 #include <stdio.h>
+#include <sys/socket.h>
+#include <sys/un.h>
+#include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
@@ -21,6 +24,7 @@
 #include "template.h"
 #define MAXBUFLEN 102400
 
+void GetJson(char const *cResource,char *cJson);
 
 void AppFunctions(FILE *fp,char *cFunction)
 {
@@ -167,8 +171,12 @@ void ParseFromJsonArray(char const *cEnv, char const *cName, char *cValue)
 void GetLabelsByContainerId(char const *cId, char *cEnv)
 {
 	char cURL[256] = {""};
-	sprintf(cURL,"http://localhost/containers/%.99s/json",cId);
-	char *js = json_fetch_unixsock(cURL);
+	//sprintf(cURL,"http://localhost/containers/%.99s/json",cId);
+	//char *js = json_fetch_unixsock(cURL);
+	char cJson[102400];
+	sprintf(cURL,"/containers/%.99s/json",cId);
+	GetJson(cURL,cJson);
+	char *js=cJson;
 	jsmntok_t *tokens = json_tokenise(js);
 
 	/*
@@ -206,11 +214,75 @@ void GetLabelsByContainerId(char const *cId, char *cEnv)
 }//void GetLabelsByContainerId(char *cId)
 
 
+void GetJson(char const *cResource,char *cJson)
+{
+	struct sockaddr_un address;
+	int  socket_fd, nbytes;
+	char buffer[102400]={""};
+
+	socket_fd=socket(PF_UNIX, SOCK_STREAM, 0);
+	if(socket_fd<0)
+	{
+		printf("socket() failed\n");
+		exit(3);
+	}
+
+ 	memset(&address,0,sizeof(struct sockaddr_un));
+ 	address.sun_family=AF_UNIX;
+#define UNIX_PATH_MAX 256
+ 	snprintf(address.sun_path,UNIX_PATH_MAX,"/var/run/docker.sock");
+
+	if(connect(socket_fd,(struct sockaddr *)&address,sizeof(struct sockaddr_un))!= 0)
+	{
+		printf("connect() failed\n");
+		exit(4);
+ 	}
+
+	nbytes=snprintf(buffer,102400,"GET %.127s HTTP/1.1\nHost: localhost\n\n",cResource);
+	write(socket_fd,buffer,nbytes);
+
+	nbytes=read(socket_fd,buffer,102400);
+	buffer[nbytes] = 0;
+	//printf("nbytes=%u\n%s",nbytes,buffer);
+
+	char *cp=NULL;
+	register int i,j;
+	if((cp=strstr(buffer,"Content-Length: "))!=NULL)
+	{
+
+		//skip 3 lines
+		j=0;
+		for(i=27;j<3&&i<100;i++)
+			if(*(cp+i)=='\n' || *(cp+i)=='\r')
+				j++;
+		sprintf(cJson,"%.102399s",cp+i+1);
+	}
+	else if((cp=strstr(buffer,"Transfer-Encoding: chunked"))!=NULL)
+	{
+		//skip 4 lines
+		j=0;
+		for(i=27;j<4&&i<100;i++)
+			if(*(cp+i)=='\n' || *(cp+i)=='\r')
+				j++;
+		//debug only printf("%d %d\n",i,j);
+		sprintf(cJson,"%.102399s",cp+i+1);
+	}
+
+	close(socket_fd);
+
+}//void GetJson()
+
+
 int main(void)
 {
 
-	char cURL[] = "http://localhost/containers/json";
-	char *js = json_fetch_unixsock(cURL);
+	char cJson[102400];
+	GetJson("/containers/json",cJson);
+
+	//char cURL[] = "http://localhost/containers/json";
+	//char *js = json_fetch_unixsock(cURL);
+	char *js=cJson;
+	printf("%.99s\n",js);
 	jsmntok_t *tokens = json_tokenise(js);
 
 	/* The Docker containers API response is in this format:
@@ -255,6 +327,7 @@ int main(void)
 		fprintf(stderr,"Could not open /etc/nginx/conf.d/docker.conf\n");
 		exit(2);
 	}
+	printf("Opened /etc/nginx/conf.d/docker.conf for write\n");
 
 	char cId[100]={""};
 	char cContainerName[256]={""};
@@ -341,5 +414,6 @@ int main(void)
 	}
 
 	fclose(fp);
+	printf("Normal exit\n");
 	return 0;
 }//main()
