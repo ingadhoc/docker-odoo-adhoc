@@ -321,6 +321,12 @@ int main(void)
 	*
 	*/
 
+	if(system("if [  -f /etc/nginx/conf.d/docker.conf ];then cp /etc/nginx/conf.d/docker.conf /etc/nginx/conf.d/docker.conf.0;fi"))
+	{
+		fprintf(stderr,"Could not copy /etc/nginx/conf.d/docker.conf\n");
+		exit(2);
+	}
+
 	FILE *fp;
 	if((fp=fopen("/etc/nginx/conf.d/docker.conf","w"))==NULL)
 	{
@@ -414,6 +420,13 @@ int main(void)
 	}
 
 	fclose(fp);
+	if(system("diff /etc/nginx/conf.d/docker.conf /etc/nginx/conf.d/docker.conf.0 > /dev/null 2>&1"))
+	{
+		if(!system("kill -HUP `pidof nginx | cut -f 2 -d ' '`"))
+			printf("Reload nginx\n");
+		else
+			fprintf(stderr,"Reload nginx failed\n");
+	}
 	printf("Normal exit\n");
 	return 0;
 }//main()

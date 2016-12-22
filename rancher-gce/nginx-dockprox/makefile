@@ -6,7 +6,7 @@
 
 GIT_VERSION := $(shell git describe --dirty --always --tags)
 CFLAGS+=-Wall -DGitVersion=\"$(GIT_VERSION)\"
-LDFLAGS+=`curl-config --libs`
+#LDFLAGS+=`curl-config --libs`
 
 TARGETS=dockprox
 OBJS=buf.o log.o json.o jsmn.o template.o
