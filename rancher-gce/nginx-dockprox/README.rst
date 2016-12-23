@@ -51,4 +51,4 @@ and then the Docker image rebuit.
 Help
 ----
 
-Contact support2unxs.io for free limited support.
+Contact support@unxs.io for free limited support.
