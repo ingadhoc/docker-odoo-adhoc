@@ -47,12 +47,12 @@ server_wide_modules = $SERVER_WIDE_MODULES
 # auto_reload = True
 
 # other performance parameters
-# db_maxconn = 32
+db_maxconn = $DB_MAXCONN
 # limit_memory_hard = 2684354560
 # limit_memory_soft = 2147483648
 # limit_request = 8192
-# limit_time_cpu = 600
-# limit_time_real = 1200
+limit_time_cpu = $LIMIT_TIME_CPU
+limit_time_real = $LIMIT_TIME_REAL
 
 # aeroo config
 aeroo.docs_enabled = True

@@ -101,6 +101,9 @@ ENV \
     SERVER_MODE=test \
     PROXY_MODE=True \
     WITHOUT_DEMO=True \
+    DB_MAXCONN=32 \
+    LIMIT_TIME_CPU=60 \
+    LIMIT_TIME_REAL=120 \
     AEROO_DOCS_HOST=aeroo \
     AFIP_HOMO_PKEY_FILE=/opt/odoo/backups/homo.pkey \
     AFIP_HOMO_CERT_FILE=/opt/odoo/backups/homo.cert \
