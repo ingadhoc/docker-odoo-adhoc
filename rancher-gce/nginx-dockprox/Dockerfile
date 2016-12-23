@@ -1,4 +1,5 @@
 FROM nginx
+MAINTAINER docker@unxs.io
 USER root
 RUN apt-get update && apt-get -y -q --no-install-recommends install cron supervisor && apt-get clean \
 	&& rm -r /var/lib/apt/lists/*

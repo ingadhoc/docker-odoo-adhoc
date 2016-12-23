@@ -48,6 +48,16 @@ templates server and upstream.
 nginx/nginx.conf and nginx/default.conf can be easily modified 
 and then the Docker image rebuit.
 
+Using
+-----
+
+Edit dockprox.c and .tpl files, then::
+
+    make
+    docker build -t nginx-dockprox .
+    docker run --restart unless-stopped --name nginx-dockprox -p 80:80 -v /var/run/docker.sock:/var/run/docker.sock:ro -d nginx-dockprox
+
+
 Help
 ----
 
