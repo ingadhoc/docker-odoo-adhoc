@@ -1,0 +1,2 @@
+#create /etc/nginx/conf.d/docker every 2 minutes
+*/2 * * * * /usr/sbin/dockprox > /tmp/dockprox.cron.log 2>&1;
