@@ -12,17 +12,18 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en  
 ENV LC_ALL en_US.UTF-8
 
-# we update postgres-client to 9.6 because we use 9.6 postgres and if not database backup wont work
-RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main" > /etc/apt/sources.list.d/pgdg.list
-RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-
 # Install some deps (if we install with no-recommends later we have some errors with pip)
 RUN apt-get update \
         && apt-get install -y \
-        python-pip git postgresql-client-9.6
+        python-pip git
 
 # sudo and other useful tools
 RUN apt-get install -y sudo nano htop ssh wget unzip
+
+# we update postgres-client to 9.6 because we use 9.6 postgres and if not database backup wont work, we need wget to run this
+RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main" > /etc/apt/sources.list.d/pgdg.list
+RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+RUN apt-get update && apt-get install -y postgresql-client-9.6
 
 # update pip and install setuptools (required for intalling pip requirements)
 RUN pip install --upgrade pip
