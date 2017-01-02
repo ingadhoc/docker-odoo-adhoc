@@ -22,7 +22,6 @@ https://github.com/OCA/report-print-send -b 9.0, oca-report-print-send
 https://github.com/OCA/account-payment -b 9.0, oca-account-payment
 https://github.com/OCA/social -b 9.0, oca-social
 https://github.com/OCA/account-analytic -b 9.0, oca-account-analytic
-https://github.com/OCA/contract -b 9.0, oca-contract 
 https://github.com/OCA/website -b 9.0, oca-website
 https://github.com/OCA/product-variant -b 9.0, oca-product-variant
 https://github.com/OCA/product-attribute -b 9.0, oca-product-attribute
