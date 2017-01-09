@@ -63,6 +63,8 @@ RUN sed  -i  "s/'auto_install': True/'auto_install': False/" /usr/lib/python2.7/
 
 RUN sed  -i  "s/'auto_install': True/'auto_install': False/" /usr/lib/python2.7/dist-packages/openerp/addons/portal/__openerp__.py
 
+RUN sed  -i  "s/'auto_install': True/'auto_install': False/" /usr/lib/python2.7/dist-packages/openerp/addons/procurement_jit/__openerp__.py
+
 # create directory for odoo files
 RUN mkdir -p /opt/odoo
 RUN chown -R odoo /opt/odoo
