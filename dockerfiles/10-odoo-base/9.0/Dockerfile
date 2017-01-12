@@ -109,6 +109,7 @@ ENV \
     SERVER_MODE=test \
     PROXY_MODE=True \
     WITHOUT_DEMO=True \
+    DBFILTER=.* \
     DB_MAXCONN=32 \
     LIMIT_TIME_CPU=60 \
     LIMIT_TIME_REAL=120 \

@@ -44,6 +44,7 @@ proxy_mode = $PROXY_MODE
 without_demo = $WITHOUT_DEMO
 server_mode = $SERVER_MODE
 server_wide_modules = $SERVER_WIDE_MODULES
+dbfilter = $DBFILTER
 # auto_reload = True
 
 # other performance parameters
