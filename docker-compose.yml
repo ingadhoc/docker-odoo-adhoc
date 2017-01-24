@@ -14,7 +14,7 @@ services:
         # TODO ver como hacemos par que esto se cambie desde otro lugar
         image: $ODOO_IMAGE:$ODOO_VERSION
         external_links:
-            - aeroo-docs:aeroo
+            - aeroo:aeroo
         depends_on:
             - db
         ports:
