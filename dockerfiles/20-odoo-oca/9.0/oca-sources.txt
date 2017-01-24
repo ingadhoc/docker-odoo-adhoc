@@ -30,3 +30,4 @@ https://github.com/OCA/management-system -b 9.0, oca-management-system
 https://github.com/OCA/e-commerce -b 9.0, oca-e-commerce
 https://github.com/OCA/connector -b 9.0, oca-connector
 https://github.com/OCA/connector-interfaces -b 9.0, oca-connector-interfaces
+https://github.com/akretion/purchase-suggest -b 9.0, akretion-purchase-suggest
