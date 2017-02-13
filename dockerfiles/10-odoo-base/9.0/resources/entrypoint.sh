@@ -93,6 +93,12 @@ if [ "$UNACCENT" == "True" ]; then
     psql -d $DB_TEMPLATE -c 'CREATE EXTENSION IF NOT EXISTS unaccent;'
 fi
 
+# Add the unaccent module for the database if needed
+if [ "$FIXDBS" == "True" ]; then
+    echo Trying to fix databases > /dev/stderr
+    $ODOO_SERVER fixdb --workers=0 --no-xmlrpc
+fi
+
 # Run server
 echo "Running command..."
 case "$1" in
