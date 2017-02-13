@@ -99,7 +99,7 @@ CMD ["odoo.py"]
 ENV \
     ODOO_SERVER=odoo.py \
     ODOO_CONF=/opt/odoo/etc/odoo.conf \
-    FIXDB=False \
+    FIXDBS=False \
     # odoo conf variables
     UNACCENT=True \
     PGUSER=odoo \
