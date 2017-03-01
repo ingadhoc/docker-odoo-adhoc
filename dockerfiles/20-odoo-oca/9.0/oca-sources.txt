@@ -28,5 +28,6 @@ https://github.com/OCA/product-attribute -b 9.0, oca-product-attribute
 https://github.com/OCA/partner-contact -b 9.0, oca-partner-contact
 https://github.com/OCA/management-system -b 9.0, oca-management-system
 https://github.com/OCA/e-commerce -b 9.0, oca-e-commerce
-https://github.com/OCA/connector -b 9.0, oca-connector
-https://github.com/OCA/connector-interfaces -b 9.0, oca-connector-interfaces
+# NO los usamos mas
+#https://github.com/OCA/connector -b 9.0, oca-connector
+#https://github.com/OCA/connector-interfaces -b 9.0, oca-connector-interfaces
