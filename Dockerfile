@@ -23,6 +23,10 @@ RUN apt-get update \
 RUN apt-get install -y python-gevent
 RUN pip install psycogreen
 
+# update pip and install setuptools (required for intalling pip requirements)
+RUN pip install --upgrade pip
+RUN pip install --upgrade setuptools
+
 ## Install pip dependencies for adhoc used odoo repositories
 
 # used by many pip packages
