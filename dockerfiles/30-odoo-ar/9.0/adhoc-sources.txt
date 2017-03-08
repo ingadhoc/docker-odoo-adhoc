@@ -26,3 +26,4 @@ https://github.com/ingadhoc/manufacture -b 9.0, ingadhoc-manufacture
 https://github.com/ingadhoc/survey -b 9.0, ingadhoc-survey
 https://github.com/ingadhoc/patches -b 9.0, ingadhoc-patches
 https://github.com/ingadhoc/demo -b 9.0, ingadhoc-demo
+https://github.com/ingadhoc/saas -b 9.0, ingadhoc-saas
