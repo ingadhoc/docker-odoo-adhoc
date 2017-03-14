@@ -52,8 +52,8 @@ RUN pip install openupgradelib
 # odoo etl, infra and others
 RUN pip install openerp-client-lib fabric erppeek fabtools
 
-# new infra
-RUN pip install google-api-python-client
+# new infra (esto nos fuerza la instalacion de httplib2 0.10.3 que no funciona con pyafipws, por ahora no lo estamos usando tampoco)
+# RUN pip install google-api-python-client
 
 # oca reports
 RUN pip install xlwt
