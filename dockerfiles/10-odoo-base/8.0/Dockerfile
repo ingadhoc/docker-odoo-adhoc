@@ -8,9 +8,9 @@ USER root
 RUN locale-gen en_US.UTF-8 && update-locale
 RUN locale-gen es_AR.UTF-8 && update-locale
 RUN echo 'LANG="en_US.UTF-8"' > /etc/default/locale
-ENV LANG en_US.UTF-8  
-ENV LANGUAGE en_US:en  
-ENV LC_ALL en_US.UTF-8
+ENV LANG es_AR.UTF-8  
+ENV LANGUAGE es_AR:es:en_US:en  
+ENV LC_ALL es_AR.UTF-8
 
 # Install some deps (if we install with no-recommends later we have some errors with pip)
 RUN apt-get update \
