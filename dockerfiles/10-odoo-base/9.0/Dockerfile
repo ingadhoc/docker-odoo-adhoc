@@ -111,9 +111,8 @@ ENV \
     PROXY_MODE=True \
     WITHOUT_DEMO=True \
     DBFILTER=.* \
-    DB_MAXCONN=32 \
-    LIMIT_TIME_CPU=600 \
-    LIMIT_TIME_REAL=1200 \
+    LIMIT_TIME_CPU=1600 \
+    LIMIT_TIME_REAL=3200 \
     AEROO_DOCS_HOST=aeroo \
     AFIP_HOMO_PKEY_FILE=/opt/odoo/backups/homo.pkey \
     AFIP_HOMO_CERT_FILE=/opt/odoo/backups/homo.cert \
