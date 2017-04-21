@@ -3,6 +3,11 @@ MAINTAINER Juan Jose Scarafia <jjs@adhoc.com.ar>
 
 USER root
 
+# Install some deps (if we install with no-recommends later we have some errors with pip)
+RUN apt-get update \
+        && apt-get install -y \
+        python-pip git locales
+
 # Generate locale (es_AR for right odoo es_AR language config, and C.UTF-8 for postgres and general locale data)
 # TODO better C.UTF-8 or en_US.UTF-8?
 RUN locale-gen en_US.UTF-8 && update-locale
@@ -11,11 +16,6 @@ RUN echo 'LANG="en_US.UTF-8"' > /etc/default/locale
 ENV LANG es_AR.UTF-8  
 ENV LANGUAGE es_AR:es:en_US:en  
 ENV LC_ALL es_AR.UTF-8
-
-# Install some deps (if we install with no-recommends later we have some errors with pip)
-RUN apt-get update \
-        && apt-get install -y \
-        python-pip git
 
 # sudo and other useful tools
 RUN apt-get install -y sudo nano htop ssh wget unzip iputils-ping
