@@ -20,6 +20,15 @@ if [ "$*" == "copy_sources" ]; then
     exit 1
 fi
 
+# copy_nginx_conf
+function copy_nginx_conf {
+    echo "Making a copy of nginx data to odoo data folder"
+    cp -R $RESOURCES/ $DATA_DIR/
+}
+
+# TODO chequear si existe y no sobre escribir?
+copy_nginx_conf
+
 # Ensure proper content for $UNACCENT
 if [ "$UNACCENT" != "True" ]; then
     UNACCENT=False
