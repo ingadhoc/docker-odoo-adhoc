@@ -21,13 +21,13 @@ if [ "$*" == "copy_sources" ]; then
 fi
 
 # copy_nginx_conf
-function copy_nginx_conf {
-    echo "Making a copy of nginx data to odoo data folder"
-    cp -R $RESOURCES/ $DATA_DIR/
-}
+# function copy_nginx_conf {
+#     echo "Making a copy of nginx data to odoo data folder"
+#     cp -R $RESOURCES/nginx $DATA_DIR/
+# }
 
 # TODO chequear si existe y no sobre escribir?
-copy_nginx_conf
+# copy_nginx_conf
 
 # Ensure proper content for $UNACCENT
 if [ "$UNACCENT" != "True" ]; then
@@ -117,6 +117,10 @@ fi
 if [ "$FIXDBS" == "True" ]; then
     echo Trying to fix databases > /dev/stderr
     $ODOO_SERVER fixdb --workers=0 --no-xmlrpc
+fi
+
+if [ "$CREATEDB" == "True" ] && [ "$DATABASE" != "" ]; then
+    $ODOO_SERVER createdb --workers=0 --no-xmlrpc
 fi
 
 # Run server
