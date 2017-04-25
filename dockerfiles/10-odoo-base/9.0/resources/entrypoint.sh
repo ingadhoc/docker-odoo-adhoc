@@ -65,6 +65,7 @@ without_demo = $WITHOUT_DEMO
 server_mode = $SERVER_MODE
 server_wide_modules = $SERVER_WIDE_MODULES
 dbfilter = $DBFILTER
+smtp_server = $SMTP_SERVER
 # auto_reload = True
 
 # other performance parameters
@@ -85,8 +86,8 @@ afip_homo_cert_file = $AFIP_HOMO_CERT_FILE
 afip_prod_pkey_file = $AFIP_PROD_PKEY_FILE
 afip_prod_cert_file = $AFIP_PROD_CERT_FILE
 
-# default mail catchall domain
-mail.catchall.domain = $MAIL_CATCHALL_DOMAIN
+# default mail catchall domain (al final por ahora no lo usamos porque no tenemos el stack name como variable y no sabemos el dominio para pasarlo en el env, vamos a hacer estas conf y la del freeze con odoo ws)
+# mail.catchall.domain = $MAIL_CATCHALL_DOMAIN
 " > $ODOO_CONF
 
 # If database is available, use it
