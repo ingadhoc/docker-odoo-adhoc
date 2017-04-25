@@ -84,11 +84,14 @@ afip_homo_pkey_file = $AFIP_HOMO_PKEY_FILE
 afip_homo_cert_file = $AFIP_HOMO_CERT_FILE
 afip_prod_pkey_file = $AFIP_PROD_PKEY_FILE
 afip_prod_cert_file = $AFIP_PROD_CERT_FILE
+
+# default mail catchall domain
+mail.catchall.domain = $MAIL_CATCHALL_DOMAIN
 " > $ODOO_CONF
 
 # If database is available, use it
 if [ "$DATABASE" != "" ]; then
-    echo "database = $DATABASE" >> $ODOO_CONF
+    echo "db_name = $DATABASE" >> $ODOO_CONF
 fi
 
 # Know if Postgres is listening
@@ -120,6 +123,7 @@ if [ "$FIXDBS" == "True" ]; then
 fi
 
 if [ "$CREATEDB" == "True" ] && [ "$DATABASE" != "" ]; then
+    echo Trying to create database > /dev/stderr
     $ODOO_SERVER createdb --workers=0 --no-xmlrpc
 fi
 

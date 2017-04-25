@@ -100,6 +100,7 @@ ENV \
     ODOO_SERVER=odoo.py \
     ODOO_CONF=/opt/odoo/etc/odoo.conf \
     FIXDBS=False \
+    CREATEDB=False \
     # odoo conf variables
     UNACCENT=True \
     PGUSER=odoo \
@@ -114,7 +115,6 @@ ENV \
     LIMIT_TIME_CPU=1600 \
     LIMIT_TIME_REAL=3200 \
     AEROO_DOCS_HOST=aeroo \
-    CREATEDB=False \
     AFIP_HOMO_PKEY_FILE=/opt/odoo/backups/homo.pkey \
     AFIP_HOMO_CERT_FILE=/opt/odoo/backups/homo.cert \
     AFIP_PROD_PKEY_FILE=/opt/odoo/backups/prod.pkey \
