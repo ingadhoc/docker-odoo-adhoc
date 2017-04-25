@@ -25,7 +25,7 @@ Environment variables
   * ADMIN_PASSWORD: will be used on the odoo.conf (default 'admin')
   * CUSTOM_ADDONS: location for addons added outside image (default '/opt/odoo/custom-addons')
   * WORKERS: odoo workers (default '4')
-  * DATABASE: database for odoo conf (none set by default, no need to se any)
+  * DATABASE: database for odoo conf (none set by default, if you set a dabase name then odoo will automatically create this db on start)
 * Advance use:
   * UNACCENT: to enable or disable unaccent functionality (default 'True')
 * Shouldn't be changed:
