@@ -18,7 +18,7 @@ ENV LANGUAGE es_AR:es:en_US:en
 ENV LC_ALL es_AR.UTF-8
 
 # sudo and other useful tools
-RUN apt-get install -y sudo nano htop ssh wget unzip iputils-ping
+RUN apt-get install -y sudo nano htop ssh wget unzip iputils-ping telnet
 
 # we update postgres-client to 9.6 because we use 9.6 postgres and if not database backup wont work, we need wget to run this
 RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main" > /etc/apt/sources.list.d/pgdg.list
