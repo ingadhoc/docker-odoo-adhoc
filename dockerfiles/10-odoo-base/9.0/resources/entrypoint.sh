@@ -123,11 +123,6 @@ if [ "$FIXDBS" == "True" ]; then
     $ODOO_SERVER fixdb --workers=0 --no-xmlrpc
 fi
 
-if [ "$CREATEDB" == "True" ] && [ "$DATABASE" != "" ]; then
-    echo Trying to create database > /dev/stderr
-    $ODOO_SERVER createdb --workers=0 --no-xmlrpc
-fi
-
 # Run server
 echo "Running command..."
 case "$1" in

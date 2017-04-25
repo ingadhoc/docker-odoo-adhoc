@@ -100,7 +100,6 @@ ENV \
     ODOO_SERVER=odoo.py \
     ODOO_CONF=/opt/odoo/etc/odoo.conf \
     FIXDBS=False \
-    CREATEDB=False \
     # odoo conf variables
     SMTP_SERVER=localhost \
     UNACCENT=True \
