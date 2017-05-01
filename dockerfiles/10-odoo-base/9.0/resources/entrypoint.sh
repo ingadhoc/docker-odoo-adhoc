@@ -86,9 +86,12 @@ afip_homo_cert_file = $AFIP_HOMO_CERT_FILE
 afip_prod_pkey_file = $AFIP_PROD_PKEY_FILE
 afip_prod_cert_file = $AFIP_PROD_CERT_FILE
 
-# default mail catchall domain (al final por ahora no lo usamos porque no tenemos el stack name como variable y no sabemos el dominio para pasarlo en el env, vamos a hacer estas conf y la del freeze con odoo ws)
-# mail.catchall.domain = $MAIL_CATCHALL_DOMAIN
 " > $ODOO_CONF
+
+# default mail catchall domain, lo usamos para que se establezca por defecto en los containers y que luego el usuario si quiere lo pueda sobreescribir con el parametro
+if [ "$MAIL_CATCHALL_DOMAIN" != "" ]; then
+    echo "mail.catchall.domain = $DATABASE" >> $MAIL_CATCHALL_DOMAIN
+fi
 
 # If database is available, use it
 if [ "$DATABASE" != "" ]; then
