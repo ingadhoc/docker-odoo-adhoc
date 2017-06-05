@@ -65,8 +65,14 @@ without_demo = $WITHOUT_DEMO
 server_mode = $SERVER_MODE
 server_wide_modules = $SERVER_WIDE_MODULES
 dbfilter = $DBFILTER
-smtp_server = $SMTP_SERVER
 # auto_reload = True
+
+# smtp server configuration
+smtp_server = $SMTP_SERVER
+smtp_port = $SMTP_PORT
+smtp_ssl = $SMTP_SSL
+smtp_user = $SMTP_USER
+smtp_password = $SMTP_PASSWORD
 
 # other performance parameters
 db_maxconn = $DB_MAXCONN

@@ -102,6 +102,10 @@ ENV \
     FIXDBS=False \
     # odoo conf variables
     SMTP_SERVER=localhost \
+    SMTP_PORT=25 \
+    SMTP_SSL=False \
+    SMTP_USER=False \
+    SMTP_PASSWORD=False \
     UNACCENT=True \
     PGUSER=odoo \
     PGPASSWORD=odoo \
