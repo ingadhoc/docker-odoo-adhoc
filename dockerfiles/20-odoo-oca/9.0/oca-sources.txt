@@ -14,7 +14,8 @@ https://github.com/OCA/manufacture -b 9.0, oca-manufacture
 https://github.com/OCA/margin-analysis -b 9.0, oca-margin-analysis
 https://github.com/OCA/crm -b 9.0, oca-crm
 https://github.com/OCA/rma -b 9.0, oca-rma
-https://github.com/OCA/web -b 9.0, oca-web
+#por el parche lo clonamos desde dockerfile porque necesitamos el tree
+#https://github.com/OCA/web -b 9.0, oca-web
 https://github.com/OCA/hr -b 9.0, oca-hr
 https://github.com/OCA/hr-timesheet -b 9.0, oca-hr-timesheet
 https://github.com/OCA/commission -b 9.0, oca-commission
