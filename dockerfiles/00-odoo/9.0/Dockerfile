@@ -1,7 +1,9 @@
 FROM ubuntu:xenial
 MAINTAINER Juan Jose Scarafia <jjs@adhoc.com.ar>
 
-ENV WKHTMLTOX_X64 http://nightly.odoo.com/extra/wkhtmltox-0.12.1.2_linux-jessie-amd64.deb
+# ENV WKHTMLTOX_X64 http://nightly.odoo.com/extra/wkhtmltox-0.12.1.2_linux-jessie-amd64.deb
+# ENV WKHTMLTOX_X64 https://bitbucket.org/wkhtmltopdf/wkhtmltopdf/downloads/wkhtmltox-0.13.0-alpha-7b36694_linux-trusty-amd64.deb
+ENV WKHTMLTOX_X64 https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.2.1/wkhtmltox-0.12.2.1_linux-trusty-amd64.deb
 # depreciado, no existe mas
 # ENV WKHTMLTOX_X64 http://download.gna.org/wkhtmltopdf/0.12/0.12.1/wkhtmltox-0.12.1_linux-trusty-amd64.deb
 
