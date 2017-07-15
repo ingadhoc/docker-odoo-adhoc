@@ -123,13 +123,13 @@ echo Waiting until the pg user $PGUSER is created... > /dev/stderr
 pg_user_exist
 
 # Add the unaccent module for the database if needed
-if [ "$UNACCENT" == "True" ]; then
+if [ "${UNACCENT,,}" == "true" ]; then
     echo Trying to install unaccent extension > /dev/stderr
     psql -d $DB_TEMPLATE -c 'CREATE EXTENSION IF NOT EXISTS unaccent;'
 fi
 
 # Add the unaccent module for the database if needed
-if [ "$FIXDBS" == "True" ]; then
+if [ "${FIXDBS,,}" == "true" ]; then
     echo Trying to fix databases > /dev/stderr
     $ODOO_SERVER fixdb --workers=0 --no-xmlrpc
 fi
