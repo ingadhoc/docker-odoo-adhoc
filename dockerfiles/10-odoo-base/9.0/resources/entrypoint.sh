@@ -128,10 +128,16 @@ if [ "${UNACCENT,,}" == "true" ]; then
     psql -d $DB_TEMPLATE -c 'CREATE EXTENSION IF NOT EXISTS unaccent;'
 fi
 
-# Add the unaccent module for the database if needed
+# por compatibilidad para atras, si mandamos true, entonces manda fix sin pasar
+# bds, si mandamos otra cosa, entonces pasamos eso como bds, esto es necesario sobre todo porque
+# ahora no compartimos posgres y las bds son visibles, luego lo podremos mejorar con usuarios pero igual
+# puede ser un problema porque se compartiría dentro de mismo usuario
 if [ "${FIXDBS,,}" == "true" ]; then
     echo Trying to fix databases > /dev/stderr
     $ODOO_SERVER fixdb --workers=0 --no-xmlrpc
+elif [ "$FIXDBS" != "" ]; then
+    echo Trying to fix databases > /dev/stderr
+    $ODOO_SERVER fixdb --workers=0 --no-xmlrpc -d $FIXDBS
 fi
 
 # Run server
