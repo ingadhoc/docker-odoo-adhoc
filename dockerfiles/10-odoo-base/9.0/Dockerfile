@@ -47,6 +47,9 @@ RUN pip install simplejson
 RUN apt-get install -y swig libffi-dev libssl-dev python-m2crypto python-httplib2
 # este deberiamos borrarlo porque tarda, es para pyOpenSSL que no deberia ser necesario si usamos pyafipws
 
+# odoo-saas (para pycurl)
+RUN apt-get install libcurl4-openssl-dev
+
 # aeroo direct print
 RUN apt-get install -y libcups2-dev
 
