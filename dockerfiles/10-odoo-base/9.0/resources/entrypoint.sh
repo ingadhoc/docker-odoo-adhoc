@@ -135,7 +135,7 @@ fi
 if [ "${FIXDBS,,}" == "true" ]; then
     echo Trying to fix databases > /dev/stderr
     $ODOO_SERVER fixdb --workers=0 --no-xmlrpc
-if [ "$FIXDBS" != "" ] && [ "${FIXDBS,,}" != "false" ]; then
+elif [ "$FIXDBS" != "" ] && [ "${FIXDBS,,}" != "false" ]; then
     echo Trying to fix databases > /dev/stderr
     $ODOO_SERVER fixdb --workers=0 --no-xmlrpc -d $FIXDBS
 fi
