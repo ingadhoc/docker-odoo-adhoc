@@ -38,6 +38,10 @@ RUN apt-get install -y python-matplotlib font-manager
 # adhoc-website
 RUN pip install mercadopago
 
+# odoo-saas (para pycurl)
+RUN apt-get install -y libcurl4-openssl-dev
+RUN pip install pycurl
+
 # odoo argentina (nuevo modulo de FE)
 RUN apt-get install -y swig libffi-dev libssl-dev python-m2crypto python-httplib2 mercurial
 RUN pip install geopy==0.95.1 BeautifulSoup pyOpenSSL suds
