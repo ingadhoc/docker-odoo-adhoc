@@ -86,7 +86,7 @@ RUN pip install python-magic
 RUN pip install erppeek
 
 # odoo-saas (para pycurl)
-RUN apt-get install -y libcurl4-openssl-dev
+RUN apt-get install -y libcurl4-openssl-dev build-essential
 RUN pip install pycurl
 
 ## Clean apt-get (copied from odoo)
