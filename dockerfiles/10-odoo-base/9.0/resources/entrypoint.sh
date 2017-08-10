@@ -36,7 +36,7 @@ fi
 
 # get DB max connections, if you set workers, each worker can have db_maxconn, and total connectios need to be less than PG_MAX_CONNECTIONS
 # by default postgres allow 100
-PG_MAX_CONNECTIONS=100
+#PG_MAX_CONNECTIONS=100
 if (($WORKERS > 0)); then
     DB_MAXCONN=`expr $PG_MAX_CONNECTIONS / $WORKERS`
 fi

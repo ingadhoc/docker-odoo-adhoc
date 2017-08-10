@@ -103,6 +103,7 @@ ENV \
     ODOO_SERVER=odoo.py \
     ODOO_CONF=/opt/odoo/etc/odoo.conf \
     FIXDBS=False \
+    PG_MAX_CONNECTIONS=100 \
     # odoo conf variables
     SMTP_SERVER=localhost \
     SMTP_PORT=25 \
