@@ -56,6 +56,7 @@ echo "
 addons_path = " $addons "
 unaccent = $UNACCENT
 workers = $WORKERS
+max_cron_threads = $MAX_CRON_THREADS
 db_user = $PGUSER
 db_password = $PGPASSWORD
 db_host = $PGHOST

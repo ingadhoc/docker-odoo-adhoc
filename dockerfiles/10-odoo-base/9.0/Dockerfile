@@ -105,6 +105,7 @@ ENV \
     FIXDBS=False \
     PG_MAX_CONNECTIONS=100 \
     # odoo conf variables
+    MAX_CRON_THREADS=1 \
     SMTP_SERVER=localhost \
     SMTP_PORT=25 \
     SMTP_SSL=False \
