@@ -45,7 +45,9 @@ if (($WORKERS <= 0)); then
 fi
 
 # empezó a darnos error si no pasamos esto, algo con el view.rng, sin , al final para que no cargue / como path
-ODOO_ADDONS="/opt/odoo/data/addons/9.0,/usr/lib/python2.7/dist-packages/openerp/addons"
+ODOO_ADDONS="/usr/lib/python2.7/dist-packages/openerp/addons"
+# por error con upgrades que dice que esta mal este dir, probamos sacarlo "/opt/odoo/data/addons/9.0"
+# ODOO_ADDONS="/opt/odoo/data/addons/9.0,/usr/lib/python2.7/dist-packages/openerp/addons"
 
 # we add sort to find so ingadhoc paths are located before the others and prefered by odoo
 echo Patching configuration > /dev/stderr
