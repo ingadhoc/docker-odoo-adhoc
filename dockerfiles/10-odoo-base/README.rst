@@ -14,8 +14,8 @@ Files and directories
 * We create "/opt/odoo" and take inside everthing that matters to this odoo image (dir / VAR):
  * "/opt/odoo/etc": for odoo.conf, Published as volume
  * "/opt/odoo/data": for odoo data dir. Published as volume
- * "/opt/odoo/extra_addons / EXTRA_ADDONS": for container included addons. Not published
- * "/opt/odoo/custom_addons / CUSTOM_ADDONS": for user custom addons. Published as volume
+ * "/opt/odoo/extra-addons / EXTRA_ADDONS": for container included addons. Not published
+ * "/opt/odoo/custom-addons / CUSTOM_ADDONS": for user custom addons. Published as volume
  * "/opt/odoo/resources / RESOURCES": resources used by this image. Not published
 
 Environment variables

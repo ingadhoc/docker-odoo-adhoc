@@ -27,6 +27,7 @@ https://github.com/OCA/product-attribute -b 9.0, oca-product-attribute
 https://github.com/OCA/partner-contact -b 9.0, oca-partner-contact
 https://github.com/OCA/management-system -b 9.0, oca-management-system
 https://github.com/OCA/e-commerce -b 9.0, oca-e-commerce
+https://github.com/OCA/project_timeline -b 9.0, oca-project_timeline
 # IMPORTANTE! nuestro script no sabe leer comentarios por lo cual todo esto tiene que ir al final si no se corta en el medio
 #por el parche lo clonamos desde dockerfile porque necesitamos el tree
 #https://github.com/OCA/web -b 9.0, oca-web
