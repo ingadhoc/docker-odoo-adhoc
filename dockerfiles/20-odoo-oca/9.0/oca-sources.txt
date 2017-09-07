@@ -13,9 +13,7 @@ https://github.com/OCA/knowledge -b 9.0, oca-knowledge
 https://github.com/OCA/manufacture -b 9.0, oca-manufacture
 https://github.com/OCA/margin-analysis -b 9.0, oca-margin-analysis
 https://github.com/OCA/crm -b 9.0, oca-crm
-https://github.com/OCA/rma -b 9.0, oca-rma
 https://github.com/OCA/hr -b 9.0, oca-hr
-https://github.com/OCA/hr-timesheet -b 9.0, oca-hr-timesheet
 https://github.com/OCA/commission -b 9.0, oca-commission
 https://github.com/OCA/report-print-send -b 9.0, oca-report-print-send
 https://github.com/OCA/account-payment -b 9.0, oca-account-payment
@@ -34,3 +32,6 @@ https://github.com/OCA/project -b 9.0, oca-project
 # NO los usamos mas
 #https://github.com/OCA/connector -b 9.0, oca-connector
 #https://github.com/OCA/connector-interfaces -b 9.0, oca-connector-interfaces
+# Estos repos no los agregamos porque no los estamos usando, asi se hace mas liviano
+#https://github.com/OCA/rma -b 9.0, oca-rma
+#https://github.com/OCA/hr-timesheet -b 9.0, oca-hr-timesheet
