@@ -1,6 +1,5 @@
 https://github.com/OCA/server-tools -b 9.0, oca-server-tools
 https://github.com/OCA/sale-workflow -b 9.0, oca-sale_workflow
-https://github.com/OCA/sale-financial -b 9.0, oca-sale-financial
 https://github.com/OCA/purchase-workflow -b 9.0, oca-purchase-workflow
 https://github.com/OCA/account-financial-tools -b 9.0, oca-account-financial-tools
 https://github.com/OCA/account-financial-reporting -b 9.0, oca-account-financial-reporting
@@ -10,12 +9,9 @@ https://github.com/OCA/stock-logistics-workflow -b 9.0, oca-stock-logistics-work
 https://github.com/OCA/stock-logistics-warehouse -b 9.0, oca-stock-logistics-warehouse
 https://github.com/OCA/knowledge -b 9.0, oca-knowledge
 https://github.com/OCA/manufacture -b 9.0, oca-manufacture
-https://github.com/OCA/margin-analysis -b 9.0, oca-margin-analysis
 https://github.com/OCA/crm -b 9.0, oca-crm
 https://github.com/OCA/hr -b 9.0, oca-hr
-https://github.com/OCA/commission -b 9.0, oca-commission
 https://github.com/OCA/report-print-send -b 9.0, oca-report-print-send
-https://github.com/OCA/account-payment -b 9.0, oca-account-payment
 https://github.com/OCA/social -b 9.0, oca-social
 https://github.com/OCA/account-analytic -b 9.0, oca-account-analytic
 https://github.com/OCA/website -b 9.0, oca-website
@@ -28,6 +24,11 @@ https://github.com/OCA/project -b 9.0, oca-project
 https://github.com/OCA/web -b 9.0, oca-web
 # IMPORTANTE! nuestro script no sabe leer comentarios por lo cual todo esto tiene que ir al final si no se corta en el medio
 # NO los usamos mas
+# el rep cost deberiamos llevarlo a patches o no usarlo mas
+#https://github.com/OCA/account-payment -b 9.0, oca-account-payment
+#https://github.com/OCA/margin-analysis -b 9.0, oca-margin-analysis
+#https://github.com/OCA/commission -b 9.0, oca-commission
+#https://github.com/OCA/sale-financial -b 9.0, oca-sale-financial
 #https://github.com/OCA/connector -b 9.0, oca-connector
 #https://github.com/OCA/connector-interfaces -b 9.0, oca-connector-interfaces
 # Estos repos no los agregamos porque no los estamos usando, asi se hace mas liviano
