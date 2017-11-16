@@ -34,7 +34,8 @@ RUN apt-get install -y python-gevent
 RUN pip install psycogreen
 
 ## Install pip dependencies for adhoc used odoo repositories
-RUN pip install openupgradelib
+# RUN pip install openupgradelib
+RUN pip install git+https://github.com/OCA/openupgradelib/@master
 
 # used by many pip packages
 RUN apt-get install -y python-dev build-essential
