@@ -1,4 +1,3 @@
-https://github.com/it-projects-llc/website-addons -b 9.0, it-projects-llc-website-addons
 https://github.com/OCA/server-tools -b 9.0, oca-server-tools
 https://github.com/OCA/sale-workflow -b 9.0, oca-sale_workflow
 https://github.com/OCA/sale-financial -b 9.0, oca-sale-financial
