@@ -32,7 +32,7 @@ RUN set -x; \
 # Install Odoo
 ENV ODOO_VERSION 9.0
 # revertimos por error con Unknown path: /base/rng/view.rng y repositorio enterprise no en ultima version
-ENV ODOO_RELEASE 20171116
+ENV ODOO_RELEASE 20171230
 RUN set -x; \
         curl -o odoo.deb -SL http://nightly.odoo.com/${ODOO_VERSION}/nightly/deb/odoo_${ODOO_VERSION}c.${ODOO_RELEASE}_all.deb \
         && dpkg --force-depends -i odoo.deb \
