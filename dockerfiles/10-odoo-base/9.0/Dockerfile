@@ -124,6 +124,8 @@ ENV \
     DBFILTER=.* \
     LIMIT_TIME_CPU=1600 \
     LIMIT_TIME_REAL=3200 \
+    LIMIT_MEMORY_HARD=2684354560 \
+    LIMIT_MEMORY_SOFT=2147483648 \
     AEROO_DOCS_HOST=aeroo \
     AFIP_HOMO_PKEY_FILE=/opt/odoo/backups/homo.pkey \
     AFIP_HOMO_CERT_FILE=/opt/odoo/backups/homo.cert \

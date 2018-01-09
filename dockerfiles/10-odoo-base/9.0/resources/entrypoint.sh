@@ -81,8 +81,8 @@ smtp_password = $SMTP_PASSWORD
 
 # other performance parameters
 db_maxconn = $DB_MAXCONN
-# limit_memory_hard = 2684354560
-# limit_memory_soft = 2147483648
+limit_memory_hard = $LIMIT_MEMORY_HARD
+limit_memory_soft = $LIMIT_MEMORY_SOFT
 # limit_request = 8192
 limit_time_cpu = $LIMIT_TIME_CPU
 limit_time_real = $LIMIT_TIME_REAL
