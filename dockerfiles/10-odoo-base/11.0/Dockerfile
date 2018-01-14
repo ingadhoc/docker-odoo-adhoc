@@ -61,14 +61,7 @@ RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Make auto_install = False for various modules
-RUN sed  -i  "s/'auto_install': True/'auto_install': False/" /usr/lib/python2.7/dist-packages/odoo/addons/im_odoo_support/__manifest__.py
-
-# Leave this module installable
-# RUN sed  -i  "s/'auto_install': True/'auto_install': False/" /usr/lib/python2.7/dist-packages/odoo/addons/base_import/__manifest__.py
-
-RUN sed  -i  "s/'auto_install': True/'auto_install': False/" /usr/lib/python2.7/dist-packages/odoo/addons/portal/__manifest__.py
-
-RUN sed  -i  "s/'auto_install': True/'auto_install': False/" /usr/lib/python2.7/dist-packages/odoo/addons/procurement_jit/__manifest__.py
+RUN sed  -i  "s/'auto_install': True/'auto_install': False/" /usr/lib/python3/dist-packages/odoo/addons/procurement_jit/__manifest__.py
 
 # create directory for odoo files
 RUN mkdir -p /opt/odoo
