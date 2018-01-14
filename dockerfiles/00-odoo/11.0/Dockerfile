@@ -16,15 +16,18 @@ RUN set -x; \
             python3-renderpm \
             libssl1.0-dev \
             xz-utils \
-        && curl -o wkhtmltox.tar.xz -SL https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz \
-        && echo '3f923f425d345940089e44c1466f6408b9619562 wkhtmltox.tar.xz' | sha1sum -c - \
-        && tar xvf wkhtmltox.tar.xz \
-        && cp wkhtmltox/lib/* /usr/local/lib/ \
-        && cp wkhtmltox/bin/* /usr/local/bin/ \
-        && cp -r wkhtmltox/share/man/man1 /usr/local/share/man/ \
         && apt-get -yqq purge python2.7 '*-dev' \
         && apt-get -yqq autoremove \
         && rm -Rf /var/lib/apt/lists/*
+
+# INSTALL wkhtmltox
+ARG WKHTMLTOPDF_VERSION=0.12.4
+ARG WKHTMLTOPDF_CHECKSUM='049b2cdec9a8254f0ef8ac273afaf54f7e25459a273e27189591edc7d7cf29db'
+RUN curl -SLo wkhtmltox.tar.xz https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/${WKHTMLTOPDF_VERSION}/wkhtmltox-${WKHTMLTOPDF_VERSION}_linux-generic-amd64.tar.xz \
+    && echo "${WKHTMLTOPDF_CHECKSUM}  wkhtmltox.tar.xz" | sha256sum -c - \
+    && tar --strip-components 1 -C /usr/local/ -xf wkhtmltox.tar.xz \
+    && rm wkhtmltox.tar.xz \
+    && wkhtmltopdf --version
 
 # Install Odoo
 ENV ODOO_VERSION 11.0
