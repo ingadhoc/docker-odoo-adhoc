@@ -2,9 +2,19 @@
 
 ## Docker Images
 
-[![](https://images.microbadger.com/badges/version/tecnativa/odoo-base:10.0.svg)](https://microbadger.com/images/tecnativa/odoo-base:10.0 "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/tecnativa/odoo-base:10.0.svg)](https://microbadger.com/images/tecnativa/odoo-base:10.0 "Get your own image badge on microbadger.com")
-[![](https://images.microbadger.com/badges/commit/tecnativa/odoo-base:10.0.svg)](https://microbadger.com/images/tecnativa/odoo-base:10.0 "Get your own commit badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/adhoc/odoo-ar:9.0.svg)](https://microbadger.com/images/adhoc/odoo-ar:9.0 "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/adhoc/odoo-ar:9.0.svg)](https://microbadger.com/images/adhoc/odoo-ar:9.0 "Get your own image badge on microbadger.com")
+
+[![](https://images.microbadger.com/badges/version/adhoc/odoo-ar-e:9.0.svg)](https://microbadger.com/images/adhoc/odoo-ar-e:9.0 "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/adhoc/odoo-ar-e:9.0.svg)](https://microbadger.com/images/adhoc/odoo-ar-e:9.0 "Get your own image badge on microbadger.com")
+
+
+[![](https://images.microbadger.com/badges/version/adhoc/odoo-ar:11.0.svg)](https://microbadger.com/images/adhoc/odoo-ar:11.0 "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/adhoc/odoo-ar:11.0.svg)](https://microbadger.com/images/adhoc/odoo-ar:11.0 "Get your own image badge on microbadger.com")
+
+[![](https://images.microbadger.com/badges/version/adhoc/odoo-ar-e:11.0.svg)](https://microbadger.com/images/adhoc/odoo-ar-e:11.0 "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/adhoc/odoo-ar-e:11.0.svg)](https://microbadger.com/images/adhoc/odoo-ar-e:11.0 "Get your own image badge on microbadger.com")
+
 
 ## Odoo Docker Compose
 
