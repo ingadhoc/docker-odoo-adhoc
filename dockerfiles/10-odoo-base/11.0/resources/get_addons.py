@@ -73,7 +73,7 @@ for line in args.sources_file.readlines():
         if os.path.isfile(requirements_txt):
             _logger.info('Installing pip requirements of %s!' % (
                 requirements_txt))
-            os.system("pip install -r %s" % requirements_txt)
+            os.system("pip3 install -r %s" % requirements_txt)
     except Exception:
         _logger.warning('Could not clone repository: %s' % repository)
 

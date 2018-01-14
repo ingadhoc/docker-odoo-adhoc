@@ -20,29 +20,30 @@ ENV LC_ALL es_AR.UTF-8
 # sudo and other useful tools
 RUN apt-get install -y sudo nano htop ssh wget unzip iputils-ping telnet
 
-# we update postgres-client to 9.6 because we use 9.6 postgres and if not database backup wont work, we need wget to run this
-RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main" > /etc/apt/sources.list.d/pgdg.list
-RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
-RUN apt-get update && apt-get install -y postgresql-client-9.6
+# psql client
+RUN apt-get install -y postgresql-client-9.6
 
-# update pip and install setuptools (required for intalling pip requirements)
-RUN pip install --upgrade pip
-RUN pip install --upgrade setuptools
-
-# Workers and longpolling dependencies
-RUN apt-get install -y python-gevent
-RUN pip install psycogreen
+# update pip and install setuptools
+RUN pip3 install --upgrade pip
+RUN pip3 install --upgrade setuptools
 
 ## Install pip dependencies for adhoc used odoo repositories
-# RUN pip install openupgradelib
-RUN pip install git+https://github.com/OCA/openupgradelib/@master
+# RUN pip3 install openupgradelib
+RUN pip3 install git+https://github.com/OCA/openupgradelib/@master
 
 # used by many pip packages
-RUN apt-get install -y python-dev build-essential
+RUN apt-get install -y python3-dev build-essential
 
-# odoo-extra
-RUN apt-get install -y python-matplotlib font-manager
-RUN pip install simplejson
+# instalamos algunas dependencias mencionadas en https://www.odoo.com/documentation/11.0/setup/install.html
+# instalamos primero wheel para que no de error vobject
+RUN pip3 install wheel
+RUN pip3 install vobject qrcode
+RUN apt-get -y install libldap2-dev libsasl2-dev
+RUN pip3 install pyldap
+
+# odoo-extra (por ahora no agregamos, tratamos de usar menos espacio)
+# RUN apt-get install -y python-matplotlib font-manager
+# RUN pip3 install simplejson
 
 # odoo argentina (nuevo modulo de FE)
 # TODO borrar o dejar
@@ -56,7 +57,7 @@ RUN pip install simplejson
 RUN apt-get install -y libcups2-dev
 
 ## Clean python 2.7
-RUN -yqq purge python2.7
+RUN apt-get -yqq purge python2.7
 
 ## Clean apt-get (copied from odoo)
 RUN apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false
