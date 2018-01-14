@@ -55,6 +55,9 @@ RUN pip install simplejson
 # aeroo direct print
 RUN apt-get install -y libcups2-dev
 
+## Clean python 2.7
+RUN -yqq purge python2.7
+
 ## Clean apt-get (copied from odoo)
 RUN apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false
 RUN apt-get clean
@@ -98,6 +101,7 @@ ENV \
     ODOO_SERVER=odoo.py \
     ODOO_CONF=/opt/odoo/etc/odoo.conf \
     FIXDBS=False \
+    WAIT_PG=True \
     PG_MAX_CONNECTIONS=100 \
     # odoo conf variables
     MAX_CRON_THREADS=1 \
