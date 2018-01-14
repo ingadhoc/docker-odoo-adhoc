@@ -1,4 +1,4 @@
-FROM odoo:11.0
+FROM adhoc/odoo-ubuntu:11.0
 MAINTAINER Juan Jose Scarafia <jjs@adhoc.com.ar>
 
 USER root
