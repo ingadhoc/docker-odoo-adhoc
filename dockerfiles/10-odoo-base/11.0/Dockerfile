@@ -3,13 +3,15 @@ MAINTAINER Juan Jose Scarafia <jjs@adhoc.com.ar>
 
 USER root
 
-# Install some deps (if we install with no-recommends later we have some errors with pip)
-RUN apt-get update \
-        && apt-get install -y \
-        python-pip git locales
+# Install some deps
+RUN apt-get -qq update
+
+# install git
+RUN apt-get install -yqq --no-install-recommends git
 
 # Generate locale (es_AR for right odoo es_AR language config, and C.UTF-8 for postgres and general locale data)
 # TODO better C.UTF-8 or en_US.UTF-8?
+RUN apt-get install -yqq --no-install-recommends locales
 RUN locale-gen en_US.UTF-8 && update-locale
 RUN locale-gen es_AR.UTF-8 && update-locale
 RUN echo 'LANG="en_US.UTF-8"' > /etc/default/locale
