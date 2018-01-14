@@ -21,7 +21,10 @@ RUN set -x; \
         && tar xvf wkhtmltox.tar.xz \
         && cp wkhtmltox/lib/* /usr/local/lib/ \
         && cp wkhtmltox/bin/* /usr/local/bin/ \
-        && cp -r wkhtmltox/share/man/man1 /usr/local/share/man/
+        && cp -r wkhtmltox/share/man/man1 /usr/local/share/man/ \
+        && apt-get -yqq autoremove \
+        && apt-get purge -yqq '*-dev' \
+        && rm -rf /var/lib/apt/lists/* odoo.deb
 
 # Install Odoo
 ENV ODOO_VERSION 11.0
@@ -31,10 +34,11 @@ RUN set -x; \
         && dpkg --force-depends -i odoo.deb \
         && apt-get update \
         && apt-get -y install -f --no-install-recommends \
+        && apt-get -yqq autoremove \
+        && apt-get purge -yqq '*-dev' \
         && rm -rf /var/lib/apt/lists/* odoo.deb
 
 # Copy entrypoint script and Odoo configuration file
-RUN pip3 install num2words
 COPY ./entrypoint.sh /
 COPY ./odoo.conf /etc/odoo/
 RUN chown odoo /etc/odoo/odoo.conf
