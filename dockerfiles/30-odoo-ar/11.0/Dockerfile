@@ -7,7 +7,7 @@ USER root
 WORKDIR ${RESOURCES}
 COPY ./adhoc-sources.txt ./
 RUN mkdir -p ${EXTRA_ADDONS}
-RUN python get_addons.py ${EXTRA_ADDONS} --depth=1 --sources_file=adhoc-sources.txt
+RUN python3 get_addons.py ${EXTRA_ADDONS} --depth=1 --sources_file=adhoc-sources.txt
 WORKDIR /
 
 # para pyafipws
