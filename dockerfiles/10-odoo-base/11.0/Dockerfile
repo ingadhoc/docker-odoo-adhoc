@@ -3,97 +3,51 @@ MAINTAINER Juan Jose Scarafia <jjs@adhoc.com.ar>
 
 USER root
 
-# Install some deps
-RUN apt-get -qq update
+# Other requirements, useful tools and recommendations to run Odoo (libldap2-dev libsasl2-dev re recommended by odoo here https://www.odoo.com/documentation/11.0/setup/install.html). libcups2-dev is for aeroo. Then install locales and later clean everything
+RUN apt-get -qq update && apt-get install -yqq --no-install-recommends \
+    git nano htop ssh wget unzip iputils-ping telnet \
+    postgresql-client-9.6 \
+    python3-dev build-essential \
+    libldap2-dev libsasl2-dev \
+    libcups2-dev \
+    locales \
+    && locale-gen en_US.UTF-8 && update-locale \
+    && locale-gen es_AR.UTF-8 && update-locale \
+    && echo 'LANG="en_US.UTF-8"' > /etc/default/locale \
+    && pip3 install --no-cache-dir --upgrade pip setuptools \
+    && pip3 install --no-cache-dir  num2words wheel vobject qrcode git+https://github.com/OCA/openupgradelib/@master \
+    && apt-get purge -yqq build-essential '*-dev' \
+    && apt-get -yqq autoremove \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# install git
-RUN apt-get install -yqq --no-install-recommends git
-
-# Generate locale (es_AR for right odoo es_AR language config, and C.UTF-8 for postgres and general locale data)
-# TODO better C.UTF-8 or en_US.UTF-8?
-RUN apt-get install -yqq --no-install-recommends locales
-RUN locale-gen en_US.UTF-8 && update-locale
-RUN locale-gen es_AR.UTF-8 && update-locale
-RUN echo 'LANG="en_US.UTF-8"' > /etc/default/locale
+# Generate locale (es_AR for right odoo es_AR language config, and C.UTF-8 for postgres and general locale data). TODO better C.UTF-8 or en_US.UTF-8?
 ENV LANG es_AR.UTF-8  
 ENV LANGUAGE es_AR:es:en_US:en  
 ENV LC_ALL es_AR.UTF-8
-
-# sudo and other useful tools
-RUN apt-get install -y sudo nano htop ssh wget unzip iputils-ping telnet
-
-# psql client
-RUN apt-get install -y postgresql-client-9.6
-
-# update pip and install setuptools
-RUN pip3 install --upgrade pip
-RUN pip3 install --upgrade setuptools
-
-## Install pip dependencies for adhoc used odoo repositories
-# RUN pip3 install openupgradelib
-RUN pip3 install git+https://github.com/OCA/openupgradelib/@master
-
-# used by many pip packages
-RUN apt-get install -y python3-dev build-essential
-
-# instalamos algunas dependencias mencionadas en https://www.odoo.com/documentation/11.0/setup/install.html
-# instalamos primero wheel para que no de error vobject
-RUN pip3 install wheel
-RUN pip3 install vobject qrcode
-RUN apt-get -y install libldap2-dev libsasl2-dev
-RUN pip3 install pyldap
-
-# odoo-extra (por ahora no agregamos, tratamos de usar menos espacio)
-# RUN apt-get install -y python-matplotlib font-manager
-# RUN pip3 install simplejson
-
-# odoo argentina (nuevo modulo de FE)
-# TODO borrar o dejar
-# RUN apt-get install -y swig libffi-dev libssl-dev python-m2crypto python-httplib2
-# este deberiamos borrarlo porque tarda, es para pyOpenSSL que no deberia ser necesario si usamos pyafipws
-
-# odoo-saas (para pycurl)
-# RUN apt-get install -y libcurl4-openssl-dev parallel
-
-# aeroo direct print
-RUN apt-get install -y libcups2-dev
-
-## Clean python 2.7
-RUN apt-get -yqq purge python2.7
-
-## Clean apt-get (copied from odoo)
-RUN apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false
-RUN apt-get clean
-RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Make auto_install = False for various modules
 RUN sed  -i  "s/'auto_install': True/'auto_install': False/" /usr/lib/python3/dist-packages/odoo/addons/procurement_jit/__manifest__.py
 
 # create directory for odoo files
-RUN mkdir -p /opt/odoo
-RUN chown -R odoo /opt/odoo
-
-# changing user is required by odoo which won't start with root
-USER odoo
 ENV ETC_DIR /opt/odoo/etc
 ENV DATA_DIR /opt/odoo/data
 ENV CUSTOM_ADDONS /opt/odoo/custom-addons
 ENV EXTRA_ADDONS /opt/odoo/extra-addons
-RUN mkdir -p ${ETC_DIR}
-RUN mkdir -p ${DATA_DIR}
-RUN mkdir -p ${CUSTOM_ADDONS}
-RUN mkdir -p ${EXTRA_ADDONS}
-
-USER root
+RUN mkdir -p /opt/odoo \
+    && mkdir -p ${ETC_DIR} \
+    && mkdir -p ${DATA_DIR} \
+    && mkdir -p ${CUSTOM_ADDONS} \
+    && mkdir -p ${EXTRA_ADDONS} \
+    && chown -R odoo /opt/odoo
 
 # Mount persistent directories
 VOLUME ["${DATA_DIR}", "${CUSTOM_ADDONS}"]
-# no tendriamos porque montar "/opt/odoo/etc" ya que la idea es que se reconstruya el conf dinamicamente
+
+USER odoo
 
 # rplace  entrypoint script and replace Odoo configuration file (new name)
 ENV RESOURCES /opt/odoo/resources/
 COPY ./resources/ ${RESOURCES}
-RUN chown -R odoo ${RESOURCES}
 
 # change entrypoint
 ENTRYPOINT ["/opt/odoo/resources/entrypoint.sh"]
@@ -136,5 +90,3 @@ ENV \
 
 # odoo server use this env var as default conf, check if v9 or v10 rename it
 ENV ODOO_RC $ODOO_CONF
-
-USER odoo
