@@ -24,7 +24,6 @@ RUN set -x; \
         && cp -r wkhtmltox/share/man/man1 /usr/local/share/man/ \
         && rm -r wkhtmltox \
         && rm wkhtmltox.tar.xz \
-        && wkhtmltopdf --version \
         && apt-get -yqq purge python2.7 '*-dev' \
         && apt-get -yqq autoremove \
         && rm -Rf /var/lib/apt/lists/*
@@ -37,6 +36,7 @@ RUN set -x; \
         && dpkg --force-depends -i odoo.deb \
         && apt-get update \
         && apt-get -y install -f --no-install-recommends \
+        && wkhtmltopdf --version \
         && apt-get purge -yqq '*-dev' \
         && apt-get -yqq autoremove \
         && rm -rf /var/lib/apt/lists/* odoo.deb
