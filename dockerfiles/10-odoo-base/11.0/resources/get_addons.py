@@ -17,13 +17,17 @@ parser.add_argument(
 #     'addons_path', metavar='--addons_path', type=str, help='Addons Path')
 parser.add_argument(
     "-S", "--sources_file", dest="sources_file", help="Sources File",
-    default='sources.txt', type=file)
+    default='sources.txt', type=argparse.FileType('r'))
 parser.add_argument(
     "--depth", dest="depth", help="Git Depth", type=int)
+parser.add_argument('--rm-git', dest='rm_git', action='store_true')
+parser.add_argument('--no-rm-git', dest='rm_git', action='store_false')
+parser.set_defaults(rm_git=False)
 
 args = parser.parse_args()
 
 depth = args.depth
+rm_git = args.rm_git
 
 # check addons path exist
 clone_path = args.clone_path
@@ -63,8 +67,9 @@ for line in args.sources_file.readlines():
         else:
             os.system("git clone --single-branch %s %s" % (repository, path))
         _logger.info('Repository %s cloned succesfully!' % repository)
-        _logger.info('Removing .git to reduce image size (%s)' % path)
-        os.system("rm -rf %s/.git" % (path))
+        if rm_git:
+            _logger.info('Removing .git to reduce image size (%s)' % path)
+            os.system("rm -rf %s/.git" % (path))
 
         # INSTALL REPO PYTHON REQUIREMENTS
         requirements_txt = os.path.join(path, 'requirements.txt')

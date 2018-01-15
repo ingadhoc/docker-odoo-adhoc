@@ -7,6 +7,7 @@ This is a fork of odoo docker official image. We make the fork for this reasons:
     * replace wkhtmltox version
     * not install python-support as not anymore on ubuntu 16.04
 * On default odoo, as there are no locales, when creating a new database and loading language  (for eg. es_ar), no correct language info is loaded (for eg date format). It is also much easier to create locales on ubunto rather than in debian
+* On v11 we reduce disk use purging python 2.7, dev packages and removing unused files related to wkhtmltox installation
 
 Tags
 ----
