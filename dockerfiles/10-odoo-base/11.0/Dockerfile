@@ -38,10 +38,10 @@ RUN mkdir -p /opt/odoo \
     && mkdir -p ${DATA_DIR} \
     && mkdir -p ${CUSTOM_ADDONS} \
     && mkdir -p ${EXTRA_ADDONS} \
-    && chown -R odoo /opt/odoo
+    && chown -R odoo.odoo /opt/odoo
 
 # Mount persistent directories
-VOLUME ["${DATA_DIR}", "${CUSTOM_ADDONS}"]
+#VOLUME ["${DATA_DIR}", "${CUSTOM_ADDONS}"]
 
 USER odoo
 
@@ -51,7 +51,7 @@ COPY ./resources/ ${RESOURCES}
 
 # change entrypoint
 ENTRYPOINT ["/opt/odoo/resources/entrypoint.sh"]
-CMD ["odoo.py"]
+CMD ["odoo"]
 
 # Variables used by the launch scripts
 ENV \
@@ -74,6 +74,7 @@ ENV \
     WORKERS=6 \
     ADMIN_PASSWORD=admin \
     SERVER_MODE=test \
+    DISABLE_SESSION_GC=false \
     PROXY_MODE=True \
     WITHOUT_DEMO=True \
     DBFILTER=.* \
