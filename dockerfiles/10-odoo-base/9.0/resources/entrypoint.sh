@@ -67,10 +67,13 @@ admin_passwd = $ADMIN_PASSWORD
 data_dir = $DATA_DIR
 proxy_mode = $PROXY_MODE
 without_demo = $WITHOUT_DEMO
-server_mode = $SERVER_MODE
 server_wide_modules = $SERVER_WIDE_MODULES
 dbfilter = $DBFILTER
 # auto_reload = True
+
+# odoo saas parameters
+server_mode = $SERVER_MODE
+disable_session_gc = $DISABLE_SESSION_GC
 
 # smtp server configuration
 smtp_server = $SMTP_SERVER
