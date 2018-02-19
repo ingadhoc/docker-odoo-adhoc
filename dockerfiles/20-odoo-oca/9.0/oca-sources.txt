@@ -22,6 +22,7 @@ https://github.com/OCA/management-system -b 9.0, oca-management-system
 https://github.com/OCA/e-commerce -b 9.0, oca-e-commerce
 https://github.com/OCA/project -b 9.0, oca-project
 https://github.com/OCA/web -b 9.0, oca-web
+https://github.com/OCA/mis-builder.git -b 9.0, oca-mis-builder
 # IMPORTANTE! nuestro script no sabe leer comentarios por lo cual todo esto tiene que ir al final si no se corta en el medio
 # NO los usamos mas
 # el rep cost deberiamos llevarlo a patches o no usarlo mas
