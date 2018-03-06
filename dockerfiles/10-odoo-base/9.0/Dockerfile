@@ -120,6 +120,7 @@ ENV \
     ADMIN_PASSWORD=admin \
     SERVER_MODE=test \
     DISABLE_SESSION_GC=false \
+    FILESTORE_OPERATIONS_THREADS=3 \
     PROXY_MODE=True \
     WITHOUT_DEMO=True \
     DBFILTER=.* \

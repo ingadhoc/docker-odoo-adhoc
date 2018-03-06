@@ -74,6 +74,7 @@ dbfilter = $DBFILTER
 # odoo saas parameters
 server_mode = $SERVER_MODE
 disable_session_gc = $DISABLE_SESSION_GC
+filestore_operations_threads = $FILESTORE_OPERATIONS_THREADS
 
 # smtp server configuration
 smtp_server = $SMTP_SERVER
