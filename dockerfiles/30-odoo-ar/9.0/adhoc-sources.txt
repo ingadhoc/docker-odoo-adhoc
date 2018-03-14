@@ -28,3 +28,4 @@ https://github.com/ingadhoc/patches -b 9.0, ingadhoc-patches
 https://github.com/ingadhoc/demo -b 9.0, ingadhoc-demo
 https://github.com/ingadhoc/odoo-public-administration -b 9.0, ingadhoc-odoo-public-administration
 https://github.com/ingadhoc/odoo-academic -b 9.0, ingadhoc-odoo-academic
+https://github.com/ingadhoc/odoo-legal -b 9.0, ingadhoc-odoo-legal
