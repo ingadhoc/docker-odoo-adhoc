@@ -3,7 +3,7 @@ MAINTAINER Juan Jose Scarafia <jjs@adhoc.com.ar>
 
 # segun odoo esta version sigue siendo la recomendable https://github.com/odoo/odoo/wiki/Wkhtmltopdf, la 12.2.1 y las podemos encontrar acá https://wkhtmltopdf.org/downloads.html
 
-ENV WKHTMLTOX_X64 https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.2.1/wkhtmltox-0.12.2.1_linux-trusty-amd64.deb
+ENV WKHTMLTOX_X64 https://downloads.wkhtmltopdf.org/0.12/0.12.5/wkhtmltox_0.12.5-1.trusty_amd64.deb
 
 # esta es la de odoo pero es para jessie y no anduvo
 # ENV WKHTMLTOX_X64 http://nightly.odoo.com/extra/wkhtmltox-0.12.1.2_linux-jessie-amd64.deb
