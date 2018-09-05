@@ -104,7 +104,7 @@ ENV \
     ODOO_SERVER=odoo.py \
     ODOO_CONF=/opt/odoo/etc/odoo.conf \
     FIXDBS=False \
-    PG_MAX_CONNECTIONS=100 \
+    DB_MAXCONN=64 \
     # odoo conf variables
     MAX_CRON_THREADS=1 \
     SMTP_SERVER=localhost \
