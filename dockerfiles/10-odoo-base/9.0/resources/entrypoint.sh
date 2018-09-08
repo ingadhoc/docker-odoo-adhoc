@@ -52,6 +52,7 @@ max_cron_threads = $MAX_CRON_THREADS
 db_user = $PGUSER
 db_password = $PGPASSWORD
 db_host = $PGHOST
+db_port = $PGPORT
 db_template = $DB_TEMPLATE
 admin_passwd = $ADMIN_PASSWORD
 data_dir = $DATA_DIR

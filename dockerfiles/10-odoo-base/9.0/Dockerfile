@@ -116,6 +116,7 @@ ENV \
     PGUSER=odoo \
     PGPASSWORD=odoo \
     PGHOST=db \
+    PGPORT=5432 \
     WORKERS=6 \
     ADMIN_PASSWORD=admin \
     SERVER_MODE=test \
