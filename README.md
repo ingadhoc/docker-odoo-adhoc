@@ -1,4 +1,4 @@
-# Odoo Docker Compose and Images
+# Odoo Docker Compose and Images (DEPRECATED)
 
 ## Docker Images
 
